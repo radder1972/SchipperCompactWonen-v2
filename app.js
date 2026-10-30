@@ -38,17 +38,17 @@ const checklistSec=`<section class="alt" id="checklist">${swTop}<div class="wrap
     <label><span>Uw voornaam *</span><input type="text" id="cl-name" required placeholder="Bijv. Geert"></label>
     <label><span>Uw e-mailadres *</span><input type="email" id="cl-email" required placeholder="naam@voorbeeld.nl"></label>
    </div>
-   <button type="submit" class="btn">📥 Download de PDF Checklist (1.2 MB)</button>
-   <small class="ask">🔒 Geen spam. Direct op uw scherm te openen en op te slaan.</small>
+   <button type="submit" class="btn"><i class="tic">${icons.download}</i>Download de PDF Checklist (1.2 MB)</button>
+   <small class="ask"><i class="tic">${icons.lock}</i>Geen spam. Direct op uw scherm te openen en op te slaan.</small>
   </form>
-  <div id="cl-done" class="card cl-done" hidden>✓ <b>Bedankt!</b> De checklist download is direct gestart. <a href="assets/zithouding-checklist.pdf" download="Schipper-Zithouding-Checklist.pdf">Klik hier om de PDF nogmaals te openen</a>.</div>
+  <div id="cl-done" class="card cl-done" hidden><i class="tic">${icons.check2}</i><b>Bedankt!</b> De checklist download is direct gestart. <a href="assets/zithouding-checklist.pdf" download="Schipper-Zithouding-Checklist.pdf">Klik hier om de PDF nogmaals te openen</a>.</div>
  </div>
 </div>${swBot}</section>`;
 
 const showroomSec=`<section id="showroom"><div class="wrap"><div class="sr-spot card reveal">
  <div class="sr-spot-img">
   <img src="assets/winkel_interieur.jpg" alt="Sfeervolle showroom van Schipper Compact Wonen in Dordrecht met sta-op stoelen en adviesbalie" loading="lazy">
-  <span class="sr-badge">📍 Merwedestraat 239, Dordrecht</span>
+  <span class="sr-badge"><i class="tic">${icons.pin}</i>Merwedestraat 239, Dordrecht</span>
  </div>
  <div class="sr-spot-body">
   <span class="tag lg">Welkom in onze showroom</span>
@@ -86,7 +86,7 @@ const geertjanSec=`<section class="alt" id="ervaringen">${swTop}<div class="wrap
    ['Wat een verademing vergeleken met de reguliere meubelgiganten. Geertjan kwam keurig op tijd aan huis voor het advies en een vakkundige meting. Geen seconde gepusht om te kopen. De stoel werd binnen een week geleverd en perfect afgesteld. Mijn man kan na zijn heupoperatie eindelijk weer zelfstandig uit zijn stoel!','Mevr. M. van Vliet','Regio Dordrecht • Fitform 570 Vario'],
    ['We zochten een mooie stoel die niet direct als ‘ziekenhuisstoel’ oogt in onze gerenoveerde woonkamer. De deskundigheid viel meteen op: binnen 10 minuten legde de adviseur uit waarom mijn vorige stoel rugpijn gaf. De bekleding matcht perfect met ons interieur.','Dhr. en Mw. De Jong','Regio Papendrecht • Maatwerk Relaxfauteuil'],
    ['We hebben gekozen voor een gereconditioneerde Fitform occasion. De stoel is letterlijk niet van nieuw te onderscheiden, rook fris en werkt vlekkeloos. Binnen 4 dagen bezorgd en de bezorger heeft de tijd genomen om alles aan mijn vader uit te leggen.','Dhr. H. Bakker','Regio Sliedrecht • Jong Gebruikte Occasion']
-  ].map(([q,n,m])=>`<div class="card reveal"><div class="stars">★★★★★</div><p>“${q}”</p><br><b>${n}</b><small class="ask" style="display:block;margin-top:2px">${m}</small></div>`).join('')}
+  ].map(([q,n,m])=>`<div class="card reveal"><div class="stars">${icons.star.repeat(5)}</div><p>“${q}”</p><br><b>${n}</b><small class="ask" style="display:block;margin-top:2px">${m}</small></div>`).join('')}
  </div>
 </div>${swBot}</section>`;
 
@@ -103,7 +103,7 @@ home:()=>`<section class="hero"><div class="wrap"><div><h1>De specialist in sta-
 <p>Al ruim 35 jaar leveren wij aan zorgverzekeraars, zorginstellingen en particulieren. Persoonlijk advies van een ervaren bewegingstechnoloog — bij u thuis of in onze showroom in Dordrecht.</p>
 <a class="btn" href="#/afspraak">Afspraak maken</a><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk assortiment</a><button type="button" class="btn ghost" data-open-showroom="1">Bekijk showroom</button>
 <div class="stats"><div><b>35+</b><span>jaar ervaring</span></div><div><b>1 jaar</b><span>garantie op occasions</span></div><div><b>Op maat</b><span>advies & thuisbezoek</span></div></div></div>
-<div class="sl" role="region" aria-roledescription="carrousel" aria-label="Onze producten in een gezellig interieur"><div class="sl-track">${slides.map((s,i)=>{const p=bySlug[s.slug]||{};return `<a class="sl-slide${i?'':' on'}" href="#/product/${s.slug}" aria-label="${p.name||''}" ${i?'tabindex="-1"':''}><img src="${i<2?s.img:'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}" data-src="${s.img}" alt="${p.name||''} in een gezellig interieur"><span class="sl-cap"><em>${names[p.cat]||''}</em><b>${p.name||''}</b><small>${p.price?'Vanaf '+eur(p.price.toFixed(2)):'Prijs op aanvraag'} · Bekijk <i>→</i></small></span></a>`}).join('')}</div>
+<div class="sl" role="region" aria-roledescription="carrousel" aria-label="Onze producten in een gezellig interieur"><div class="sl-track">${slides.map((s,i)=>{const p=bySlug[s.slug]||{};return `<a class="sl-slide${i?'':' on'}" href="#/product/${s.slug}" aria-label="${p.name||''}" ${i?'tabindex="-1"':''}><img src="${i<2?s.img:'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}" data-src="${s.img}" alt="${p.name||''} in een gezellig interieur"><span class="sl-cap"><em>${names[p.cat]||''}</em><b>${p.name||''}</b><small>${p.price?'Vanaf '+eur(p.price.toFixed(2)):'Prijs op aanvraag'} · Bekijk <i class="tic">${icons.arrow}</i></small></span></a>`}).join('')}</div>
 <button class="sl-nav sl-prev" aria-label="Vorige foto"></button><button class="sl-nav sl-next" aria-label="Volgende foto"></button>
 <div class="sl-dots">${slides.map((s,i)=>`<button class="${i?'':'on'}" aria-label="Foto ${i+1}"></button>`).join('')}</div><div class="sl-bar"><i></i></div></div></div>
 <svg class="hero-art" viewBox="0 0 1440 560" preserveAspectRatio="none" aria-hidden="true">
@@ -126,8 +126,8 @@ home:()=>`<section class="hero"><div class="wrap"><div><h1>De specialist in sta-
 <section><div class="wrap"><h2 class="t">Onze productgroepen</h2><p class="sub">Alles voor zit-, lig- en zorgcomfort onder één dak in Dordrecht.</p><div class="grid g3">
 ${Object.entries(groups).map(([k,g])=>`<a class="card reveal" href="#/cat/${k}"><div class="ico">${g.i}</div><h3>${g.t}</h3><p>${g.d}</p></a>`).join('')}</div></div></section>
 <section class="alt">${swTop}<div class="wrap split"><div class="reveal"><h2 class="t">Sta op stoel op maat</h2><p class="prose">Net zoals bij schoenen of een maatkostuum passen wij een stoel helemaal aan op uw persoonlijke maten en wensen. Kom ons <a href="#/cat/zitcomfort_sta-op-stoelen">ruime assortiment</a> bekijken en proberen, of laat ons u thuis bezoeken.</p><a class="btn" href="#/informatie">Meer informatie</a></div>
-<div class="card reveal"><div class="ico">${icons.recycle}</div><h3>Occasion sta-op stoelen</h3><p>Onze tweedehands sta-op stoelen zijn altijd gereinigd en gereviseerd, met standaard 1 jaar garantie.</p><br><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk occasions →</a></div></div>${swBot}</section>
-<section><div class="wrap"><h2 class="t">Een greep uit ons assortiment</h2><p class="sub">Een selectie van onze populairste producten uit alle categorieën.</p><div class="grid g4">${featured.map(prod).join('')}</div><div style="margin-top:28px;text-align:center"><a class="btn ghost" href="#/cat/zitcomfort">Bekijk alle ${all.length} modellen in de collectie →</a></div></div></section>
+<div class="card reveal"><div class="ico">${icons.recycle}</div><h3>Occasion sta-op stoelen</h3><p>Onze tweedehands sta-op stoelen zijn altijd gereinigd en gereviseerd, met standaard 1 jaar garantie.</p><br><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk occasions <i class="tic">${icons.arrow}</i></a></div></div>${swBot}</section>
+<section><div class="wrap"><h2 class="t">Een greep uit ons assortiment</h2><p class="sub">Een selectie van onze populairste producten uit alle categorieën.</p><div class="grid g4">${featured.map(prod).join('')}</div><div style="margin-top:28px;text-align:center"><a class="btn ghost" href="#/cat/all">Bekijk alle ${all.length} modellen in de collectie <i class="tic">${icons.arrow}</i></a></div></div></section>
 ${checklistSec}
 ${werkwijzeSec}
 ${geertjanSec}
@@ -142,7 +142,7 @@ informatie:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href=
   <p>Iedereen wil oud worden maar niemand wil het zijn. Met ouder worden komen de nodige gebreken. Onze passie is om met ergonomisch aangemeten producten deze gebreken te ontkrachten en u zo lang mogelijk zelfstandig en comfortabel thuis te laten wonen.</p>
   <p>Wij zijn geen webwinkel: u bent van harte welkom in onze showroom aan de Merwedestraat 239 in Dordrecht. U wordt niet geholpen door een ‘snelle verkoper’, maar door ervaren bewegingstechnoloog <b>Geertjan Klein Haneveld</b>.</p>
   <p>Goed zitten is een vaak onderschatte factor die bijdraagt aan uw gezondheid. Wij ontvangen u graag met verse koffie in Dordrecht of bezoeken u kosteloos thuis als dat makkelijker is.</p>
-  <div class="acts" style="margin-top:20px"><a class="btn" href="#/afspraak">Plan een adviesafspraak</a><button type="button" class="btn ghost" data-open-showroom="1">Bekijk onze showroom</button><a class="btn ghost" href="nieuwe-zaak.html">De Nieuwe Zaak (Storyboard) ↗</a></div>
+  <div class="acts" style="margin-top:20px"><a class="btn" href="#/afspraak">Plan een adviesafspraak</a><button type="button" class="btn ghost" data-open-showroom="1"><i class="tic">${icons.store}</i>Bekijk onze showroom</button><a class="btn ghost" href="nieuwe-zaak.html">De Nieuwe Zaak (Storyboard) <i class="tic">${icons.ext}</i></a></div>
  </div>
  <div class="gj-photo">
   <img src="assets/geert_in_de_winkel_welkom.jpg" alt="Geertjan Klein Haneveld heet u welkom in de showroom van Schipper Compact Wonen in Dordrecht" loading="lazy">
@@ -159,7 +159,7 @@ contact:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href="#/
  <p class="ask" style="margin-top:14px">KvK: 24391284 · BTW: NL815610427B01</p>
  <div class="acts" style="margin-top:18px">
   <a class="btn" href="#/afspraak">Plan een afspraak</a>
-  <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=Merwedestraat+239,+3313+GT+Dordrecht" target="_blank" rel="noopener">Plan route in Google Maps ↗</a>
+  <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=Merwedestraat+239,+3313+GT+Dordrecht" target="_blank" rel="noopener"><i class="tic">${icons.route}</i>Plan route in Google Maps</a>
  </div>
 </div>
 <div>
@@ -253,7 +253,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.3.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.3.1 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};

@@ -1,4 +1,5 @@
 import {config as C} from './config.js';
+import {icons} from './icons.js';
 const $=s=>document.querySelector(s);
 const st={mode:'callback',type:'showroom',month:new Date(),date:null,slot:null,chair:''};
 const pad=n=>String(n).padStart(2,'0');
@@ -14,7 +15,7 @@ export function afspraakHtml(chairName=''){
   <button type="button" class="ap-tab active" data-mode="callback" role="tab"><b>Bel mij terug</b><small>Laat uw nummer achter, wij bellen u</small></button>
   <button type="button" class="ap-tab" data-mode="agenda" role="tab"><b>Kies zelf een moment</b><small>Selecteer datum en tijd in de agenda</small></button>
  </div>
- <p class="ask ap-loc"><img class="ap-ic" src="icons/locatie.svg" alt="">${C.showroom}<span class="ap-sep"></span><img class="ap-ic" src="icons/phone.svg" alt=""><a href="tel:${C.phone.replace(/\D/g,'')}">${C.phone}</a></p>
+ <p class="ask ap-loc"><i class="tic">${icons.pin}</i>${C.showroom}<span class="ap-sep"></span><i class="tic">${icons.phone}</i><a href="tel:${C.phone.replace(/\D/g,'')}">${C.phone}</a></p>
  <div id="ap-callback" class="ap-panel card">${callbackForm()}</div>
  <div id="ap-agenda" class="ap-panel card" hidden>${agendaForm()}</div>
  <div id="ap-done" class="card ap-done" hidden></div></div></div>`}
@@ -65,7 +66,7 @@ function send(payload,mailBody,subject){
  return fetch(C.webhookUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload),signal:ctl.signal})
   .then(()=>true).catch(()=>{send.mail=mail;return false}).finally(()=>clearTimeout(t));
 }
-const failHtml=()=>`<div class="ap-fail" role="alert"><b>Versturen is niet gelukt.</b> Controleer uw internetverbinding en probeer het opnieuw, of neem direct contact op:<br>☎ <a href="tel:${C.phone.replace(/\D/g,'')}">${C.phone}</a> · <a href="${send.mail||'#'}">stuur ons een e-mail</a></div>`;
+const failHtml=()=>`<div class="ap-fail" role="alert"><b>Versturen is niet gelukt.</b> Controleer uw internetverbinding en probeer het opnieuw, of neem direct contact op:<br><i class="tic">${icons.phone}</i><a href="tel:${C.phone.replace(/\D/g,'')}">${C.phone}</a> · <a href="${send.mail||'#'}">stuur ons een e-mail</a></div>`;
 function showFail(btn,label,host){btn.disabled=false;btn.textContent=label;let f=host.querySelector('.ap-fail');if(f)f.remove();btn.insertAdjacentHTML('beforebegin',failHtml())}
 function done(html){$('#ap-callback').hidden=true;$('#ap-agenda').hidden=true;document.querySelector('.ap-choice').hidden=true;const d=$('#ap-done');d.hidden=false;d.innerHTML=html;scrollTo({top:0,behavior:'smooth'})}
 const doneBox=(extra)=>`<div class="ico"><img class="gi" src="icons/bedankt.svg" alt=""></div><h2>Bedankt voor uw aanvraag!</h2>${extra}<p>Heeft u vragen? Bel gerust <a href="tel:${C.phone.replace(/\D/g,'')}">${C.phone}</a>.</p><a class="btn" href="#/">Terug naar home</a>`;
@@ -87,7 +88,7 @@ export function initAfspraak(){
  $('#nm').onclick=()=>{st.month=new Date(st.month.getFullYear(),st.month.getMonth()+1,1);drawCal()};
  const look=async()=>{const pc=$('#apc').value.replace(/\s+/g,'').toUpperCase(),hn=$('#ahn').value.trim(),fb=$('#afb');
   if(/^[1-9][0-9]{3}[A-Z]{2}$/.test(pc)&&hn){fb.textContent='Adres zoeken…';try{const r=await fetch(`https://api.pdok.nl/bzk/locatieserver/search/v3_1/free?fq=postcode:${pc}&fq=huisnummer:${encodeURIComponent(hn)}&rows=1`);const d=await r.json();const doc=d.response&&d.response.docs&&d.response.docs[0];
-   if(doc){$('#aa').value=doc.weergavenaam;fb.textContent='✓ Adres gevonden';}else fb.textContent='Adres niet gevonden, vul het handmatig in.'}catch{fb.textContent='Zoeken mislukt, vul het adres handmatig in.'}}};
+   if(doc){$('#aa').value=doc.weergavenaam;fb.innerHTML=`<i class="tic">${icons.check2}</i>Adres gevonden`;}else fb.textContent='Adres niet gevonden, vul het handmatig in.'}catch{fb.textContent='Zoeken mislukt, vul het adres handmatig in.'}}};
  $('#apc').onblur=look;$('#ahn').onblur=look;
  $('#af').onsubmit=e=>{e.preventDefault();['an','ap','ae','aa'].forEach(i=>setErr(i));setErr('slot','');
   if(!st.date||!st.slot){setErr('slot','Kies een datum en een tijdstip.');return}
@@ -117,7 +118,7 @@ export function openAfspraakModal(chair=''){
   <p class="ask" style="margin:0 0 12px">Laat uw gegevens achter, dan bellen wij u om een afspraak in te plannen.</p>
   ${field('mqn','Uw naam','autocomplete="name"')}${field('mqp','Uw telefoonnummer','type="tel" autocomplete="tel" inputmode="tel"')}
   <button class="btn" id="mqs">Bel mij voor een afspraak</button>
-  <p class="ask" style="margin:12px 0 0">Liever zelf een moment kiezen? <a href="#/afspraak${slug?'/'+slug:''}" id="mql">Plan in de agenda →</a></p>
+  <p class="ask" style="margin:12px 0 0">Liever zelf een moment kiezen? <a href="#/afspraak${slug?'/'+slug:''}" id="mql">Plan in de agenda <i class="tic">${icons.arrow}</i></a></p>
   <p class="ask">Of bel direct: <a href="tel:${C.phone.replace(/\D/g,'')}">${C.phone}</a></p></form></div></div>`;
  document.body.append(m);document.body.style.overflow='hidden';
  const close=()=>{m.remove();document.body.style.overflow='';removeEventListener('keydown',esc)};const esc=e=>{if(e.key==='Escape')close()};addEventListener('keydown',esc);

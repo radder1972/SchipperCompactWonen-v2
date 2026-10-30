@@ -371,7 +371,13 @@ h2.t:after,.page h1:after{content:"";position:absolute;left:0;bottom:0;width:128
 .sr-modal[hidden]{display:none!important}
 .sr-backdrop{position:absolute;inset:0;background:rgba(6,18,10,.68);backdrop-filter:blur(6px)}
 .sr-card{position:relative;z-index:1;max-width:780px;width:100%;max-height:90vh;overflow-y:auto;padding:0}
-.sr-close{position:absolute;top:14px;right:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(12,34,20,.82);color:#fff;font-size:16px;cursor:pointer}
+.sr-close{position:absolute;top:14px;right:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.9) url(icons/close.svg) no-repeat center/55%;font-size:0;color:transparent;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);transition:transform .2s}
+.sr-close:hover{transform:scale(1.1)}
+.stars{display:flex;gap:3px;margin-bottom:10px}.stars .svg{width:19px;height:19px}
+.sr-info>div{display:flex;align-items:center;gap:6px}
+.fseal b{color:#fff;font-size:14px;display:flex;align-items:center;gap:4px}
+.fshop-btn span{position:absolute;right:8px;bottom:8px;background:rgba(11,26,18,.88);color:#fff;font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:4px}
+.sr-badge{position:absolute;left:16px;bottom:16px;background:rgba(12,34,20,.88);color:#fff;padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
 .sr-hero{position:relative;height:280px;background:#0b1a12}
 .sr-hero img{width:100%;height:100%;object-fit:cover}
 .sr-toggle{position:absolute;left:16px;bottom:14px;display:flex;gap:8px;background:rgba(12,34,20,.82);padding:5px;border-radius:999px;backdrop-filter:blur(6px)}
