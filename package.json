@@ -1,0 +1,19 @@
+{
+  "name": "schipper-compact-wonen",
+  "version": "1.4.9",
+  "description": "Schipper Compact Wonen — Showroom Dordrecht & Serverless Contact/Calendar API",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radder1972/SchipperCompactWonen-v2.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "nodemailer": "^6.10.0"
+  }
+}

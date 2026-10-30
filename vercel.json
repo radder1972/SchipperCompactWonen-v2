@@ -1,5 +1,10 @@
 {
   "cleanUrls": true,
+  "functions": {
+    "api/contact.js": {
+      "includeFiles": "assets/zithouding-checklist.pdf"
+    }
+  },
   "redirects": [
     { "source": "/collectie.html", "destination": "/#/cat/zitcomfort", "permanent": false },
     { "source": "/collectie", "destination": "/#/cat/zitcomfort", "permanent": false },

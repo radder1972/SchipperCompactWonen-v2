@@ -246,10 +246,26 @@ function initFilters(){
 }
 function initChecklist(){
  const f=$('#cl-form'),d=$('#cl-done');if(!f)return;
- f.onsubmit=e=>{
+ f.onsubmit=async e=>{
   e.preventDefault();
-  if(d)d.hidden=false;f.style.opacity='.6';
+  const voornaam=($('#cl-name')?.value||'').trim();
+  const email=($('#cl-email')?.value||'').trim();
+  const btn=f.querySelector('button[type="submit"]');
+  const origHtml=btn?btn.innerHTML:'';
+  if(btn){btn.disabled=true;btn.innerHTML=`<span class="btn-spin" aria-hidden="true"></span>Checklist verzenden &amp; downloaden…`}
   const a=document.createElement('a');a.href='assets/zithouding-checklist.pdf';a.download='Schipper-Zithouding-Checklist.pdf';document.body.appendChild(a);a.click();a.remove();
+  let mailed=false;
+  try{
+   const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({voornaam,email,type:'checklist'})});
+   const data=await res.json().catch(()=>({}));
+   mailed=Boolean(res.ok&&data.success);
+  }catch{}
+  if(btn){btn.disabled=false;btn.innerHTML=origHtml}
+  if(d){
+   d.hidden=false;
+   d.innerHTML=`<i class="tic">${icons.check2}</i><b>Bedankt${voornaam?`, ${voornaam}`:''}!</b> ${mailed?`De checklist is per e-mail verzonden naar <b>${email}</b> én de download is direct gestart.`:'De checklist download is direct gestart.'} <a href="assets/zithouding-checklist.pdf" download="Schipper-Zithouding-Checklist.pdf">Klik hier om de PDF nogmaals te openen</a>.`;
+  }
+  f.style.opacity='.65';
  };
 }
 function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.classList.toggle('on',l.getAttribute('href')===(location.hash||'#/')||(location.hash.startsWith(l.getAttribute('href'))&&l.getAttribute('href').length>3&&l.getAttribute('href')!=='#/'))));const [,r,a]=location.hash.split('/');const v=views[r||'home'];app.innerHTML=(v?v(a):views.nf());
@@ -259,7 +275,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.4.8 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.4.9 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 document.querySelectorAll('#nav .dd').forEach(dd=>{
  dd.addEventListener('mouseleave',()=>{dd.classList.remove('shut');const f=dd.querySelector(':focus');if(f)f.blur()});
  dd.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{dd.classList.add('shut');a.blur()}));

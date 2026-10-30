@@ -59,9 +59,32 @@ function drawSlots(){
 }
 const setErr=(id,t)=>{const e=$('#'+id+'-e');if(e)e.textContent=t||''};
 const validPhone=p=>{const c=p.replace(/\s+/g,'');return c.startsWith('+31')?/^\+31\d{9}$/.test(c):/^\d{10}$/.test(c)};
-function send(payload,mailBody,subject){
+async function send(payload,mailBody,subject){
  const mail=`mailto:${C.replyTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
- if(!C.webhookUrl){location.href=mail;return Promise.resolve(true)}
+ // 1. Probeer eerst onze eigen Serverless API route (/api/contact via Nodemailer + Google Calendar API)
+ try{
+  const apiRes=await fetch('/api/contact',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({
+    voornaam:payload.name||'Klant',
+    email:payload.email||'',
+    datum:payload.startISO||payload.date||new Date().toISOString(),
+    tijd:payload.timeSlot||'',
+    telefoon:payload.phone||'',
+    locatie:payload.address||C.showroom,
+    opmerkingen:payload.notes||'',
+    type:'afspraak'
+   })
+  });
+  const apiData=await apiRes.json().catch(()=>({}));
+  if(apiRes.ok&&apiData.success){
+   send.viaApi=true;
+   return true;
+  }
+ }catch{}
+ // 2. Fallback naar C.webhookUrl of mailto wanneer .env variabelen nog niet geconfigureerd zijn
+ if(!C.webhookUrl){location.href=mail;return true}
  const ctl=new AbortController(),t=setTimeout(()=>ctl.abort(),15000);
  return fetch(C.webhookUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload),signal:ctl.signal})
   .then(()=>true).catch(()=>{send.mail=mail;return false}).finally(()=>clearTimeout(t));
@@ -80,7 +103,7 @@ export function initAfspraak(){
   if(p.replace(/\D/g,'').length<8){setErr('qp','Vul alstublieft een geldig telefoonnummer in (minimaal 8 cijfers).');$('#qp').focus();return}
   const notes=st.chair?`Klant wil gebeld worden voor proefzitten. Gekozen product: ${st.chair}`:'Klant wil gebeld worden om een adviesafspraak in te plannen.';
   const payload={brand:C.brand,site:C.site,type:'quick_appointment_call_me',appointmentType:'showroom',name:n,phone:p,email:`belmij@${C.site}`,replyTo:C.replyTo,notificationEmail:C.notificationEmail,notes,source:'Afspraakpagina (Bel mij)',pageUrl:location.href,timestamp:new Date().toISOString()};
-  $('#qs').disabled=true;$('#qs').textContent='Versturen…';send(payload,`Naam: ${n}\nTelefoon: ${p}\n${notes}`,'Bel-mij verzoek adviesafspraak').then(ok=>ok?done(doneBox(`<p>Wij bellen u zo snel mogelijk op <b>${p}</b> om een afspraak in te plannen.</p>`)):showFail($('#qs'),'Bel mij voor een afspraak',$('#qf')))};
+  $('#qs').disabled=true;$('#qs').innerHTML='<span class="btn-spin" aria-hidden="true"></span>Versturen…';send(payload,`Naam: ${n}\nTelefoon: ${p}\n${notes}`,'Bel-mij verzoek adviesafspraak').then(ok=>ok?done(doneBox(`<p>Wij bellen u zo snel mogelijk op <b>${p}</b> om een afspraak in te plannen.</p>`)):showFail($('#qs'),'Bel mij voor een afspraak',$('#qf')))};
  const ha=$('#ha');
  document.querySelectorAll('.ap-type').forEach(l=>l.onclick=()=>{st.type=l.dataset.type;st.slot=null;document.querySelectorAll('.ap-type').forEach(x=>{x.classList.toggle('selected',x===l);x.querySelector('input').checked=x===l});
   ha.hidden=st.type!=='home';if(st.date&&C.closedWeekdays.includes(st.date.getDay())){st.date=null;$('#sd').textContent='Geen datum geselecteerd'}drawCal();drawSlots()});
@@ -102,10 +125,10 @@ export function initAfspraak(){
   const when=st.date.toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const emailHtml=`<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;max-width:600px;margin:0 auto;padding:24px 20px"><h2 style="color:#1f9d3f;margin:0 0 4px">${C.senderName}</h2><p style="margin:0 0 20px;color:#666">De specialist in sta-op stoelen en zorghulpmiddelen</p><p>Beste ${n},</p><p>Bedankt voor uw aanvraag. Uw afspraak staat bij ons genoteerd:</p><table style="border-collapse:collapse;font-size:14px"><tr><td style="padding:4px 14px 4px 0;color:#666">Type afspraak:</td><td><b>${label}</b></td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Datum:</td><td><b>${when}</b></td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Tijdstip:</td><td><b>${st.slot}</b></td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Locatie:</td><td>${loc}</td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Telefoon:</td><td>${p}</td></tr>${no&&no!=='-'?`<tr><td style="padding:4px 14px 4px 0;color:#666">Opmerkingen:</td><td>${no}</td></tr>`:''}</table><p>Wij nemen telefonisch contact met u op om de afspraak te bevestigen.</p>${st.type==='showroom'?`<p><b>Showroom:</b> ${C.showroom}. Gratis parkeren voor de deur.</p>`:''}<p>Met vriendelijke groet,<br><b>${C.senderName}</b><br>${C.phone} · <a href="mailto:${C.replyTo}">${C.replyTo}</a><br>${C.showroom}</p></div>`;
   const payload={brand:C.brand,site:C.site,name:n,phone:p,email:m,date:ymd(st.date),timeSlot:st.slot,startTime:s,endTime:en,startISO:iso(s),endISO:iso(en),appointmentType:st.type,address:loc,notes:no||'-',emailSubject:`Bevestiging van uw aanvraag voor een adviesgesprek - ${C.senderName}`,senderName:C.senderName,replyTo:C.replyTo,notificationEmail:C.notificationEmail,emailHtml,timestamp:new Date().toISOString()};
-  $('#as').disabled=true;$('#as').textContent='Verwerken…';
+  $('#as').disabled=true;$('#as').innerHTML='<span class="btn-spin" aria-hidden="true"></span>Afspraak inplannen…';
   send(payload,`Type: ${label}\nDatum: ${when}\nTijd: ${st.slot}\nLocatie: ${loc}\nNaam: ${n}\nTelefoon: ${p}\nE-mail: ${m}\nOpmerkingen: ${no||'-'}`,`Afspraakaanvraag ${label} – ${n}`)
    .then(ok=>{if(!ok){showFail($('#as'),'Afspraak aanvragen',$('#af'));return}done(doneBox(`<table class="spec ap-sum"><tr><th>Type</th><td>${label}</td></tr><tr><th>Datum</th><td>${when}</td></tr><tr><th>Tijdstip</th><td>${st.slot}</td></tr><tr><th>Locatie</th><td>${loc}</td></tr></table>
-   <p>Wij nemen telefonisch contact met u op om de afspraak te bevestigen.${C.webhookUrl?'':' <br><small class="ask">Er is een e-mail voor u klaargezet; verstuur die in uw mailprogramma om de aanvraag te voltooien.</small>'}</p>`))})};
+   <p>Wij hebben uw afspraakaanvraag ontvangen en nemen telefonisch contact met u op om deze definitief te bevestigen.${send.viaApi||C.webhookUrl?` U ontvangt tevens een bevestiging op <b>${m}</b>.`:' <br><small class="ask">Er is een e-mail voor u klaargezet; verstuur die in uw mailprogramma om de aanvraag te voltooien.</small>'}</p>`))})};
 }
 
 export function openAfspraakModal(chair=''){
@@ -129,6 +152,6 @@ export function openAfspraakModal(chair=''){
   if(p.replace(/\D/g,'').length<8){setErr('mqp','Vul alstublieft een geldig telefoonnummer in (minimaal 8 cijfers).');m.querySelector('#mqp').focus();return}
   const notes=chair?`Klant wil gebeld worden voor proefzitten. Gekozen product: ${chair}`:'Klant wil gebeld worden om een adviesafspraak in te plannen.';
   const payload={brand:C.brand,site:C.site,type:'quick_appointment_call_me',appointmentType:'showroom',name:n,phone:p,email:`belmij@${C.site}`,replyTo:C.replyTo,notificationEmail:C.notificationEmail,notes,source:'Afspraak-overlay (Bel mij)',pageUrl:location.href,timestamp:new Date().toISOString()};
-  m.querySelector('#mqs').disabled=true;m.querySelector('#mqs').textContent='Versturen…';
-  send(payload,`Naam: ${n}\nTelefoon: ${p}\n${notes}`,'Bel-mij verzoek adviesafspraak').then(ok=>{if(!ok){showFail(m.querySelector('#mqs'),'Bel mij voor een afspraak',m);return}m.querySelector('#apm-body').innerHTML=`<div class="ap-done" style="padding:10px 0"><div class="ico"><img class="gi" src="icons/bedankt.svg" alt=""></div><h3>Bedankt, ${n.split(' ')[0]}!</h3><p>Wij bellen u zo snel mogelijk op <b>${p}</b>.${C.webhookUrl?'':'<br><small class="ask">Er is een e-mail klaargezet; verstuur die in uw mailprogramma om de aanvraag te voltooien.</small>'}</p><button class="btn" type="button" id="mqc">Sluiten</button></div>`;m.querySelector('#mqc').onclick=close})};
+  m.querySelector('#mqs').disabled=true;m.querySelector('#mqs').innerHTML='<span class="btn-spin" aria-hidden="true"></span>Versturen…';
+  send(payload,`Naam: ${n}\nTelefoon: ${p}\n${notes}`,'Bel-mij verzoek adviesafspraak').then(ok=>{if(!ok){showFail(m.querySelector('#mqs'),'Bel mij voor een afspraak',m);return}m.querySelector('#apm-body').innerHTML=`<div class="ap-done" style="padding:10px 0"><div class="ico"><img class="gi" src="icons/bedankt.svg" alt=""></div><h3>Bedankt, ${n.split(' ')[0]}!</h3><p>Wij bellen u zo snel mogelijk op <b>${p}</b>.${send.viaApi||C.webhookUrl?'':'<br><small class="ask">Er is een e-mail klaargezet; verstuur die in uw mailprogramma om de aanvraag te voltooien.</small>'}</p><button class="btn" type="button" id="mqc">Sluiten</button></div>`;m.querySelector('#mqc').onclick=close})};
 }

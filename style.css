@@ -477,3 +477,6 @@ h2.t:after,.page h1:after{content:"";position:absolute;left:0;bottom:0;width:128
  78%{transform:translate(0,4px) rotate(0deg) scale(1.1,.9)}
  88%{transform:translate(0,-9px) rotate(0deg) scale(1.05,1.05)}
 }
+/* Loading spinner voor formulier-knoppen */
+.btn-spin{display:inline-block;width:16px;height:16px;border:2.2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:btnSpin .65s linear infinite;vertical-align:-3px;margin-right:7px;flex-shrink:0}
+@keyframes btnSpin{to{transform:rotate(360deg)}}
