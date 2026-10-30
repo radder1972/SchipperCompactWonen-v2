@@ -396,3 +396,24 @@ h2.t:after,.page h1:after{content:"";position:absolute;left:0;bottom:0;width:128
  .footer{padding-bottom:76px}
  .up{bottom:74px}
 }
+/* productkaarten met licht huisstijl-accent & 3D gereviseerd-icoon */
+.prod{border:1px solid color-mix(in srgb,var(--pri) 22%,var(--bd));background:var(--card);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.prod:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--pri),#34c759 62%,var(--acc));z-index:2;opacity:.85;transition:opacity .25s,height .25s}
+.prod:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--pri) 55%,var(--bd));box-shadow:0 18px 38px rgba(31,157,63,.16)}
+.prod:hover:before{opacity:1;height:5px}
+.prod .im{background:radial-gradient(circle at 50% 52%,#ffffff 55%,#f2f8f3 100%)}
+.prod .b{position:relative;background:linear-gradient(180deg,#f3faf5 0%,#e8f4ec 100%);padding:14px 18px 16px}
+[data-theme=dark] .prod .b{background:linear-gradient(180deg,#15291d 0%,#112218 100%)}
+.prod-sw{position:absolute;left:0;right:0;top:-19px;width:100%;height:20px;display:block;pointer-events:none;z-index:2}
+.prod-sw .psw-fill{fill:#f3faf5}
+[data-theme=dark] .prod-sw .psw-fill{fill:#15291d}
+.pfoot{margin-top:auto;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--pri) 14%,var(--bd));display:flex;align-items:center;justify-content:space-between;gap:8px}
+.prod .b .price{color:var(--pri2)}
+.p-go{width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--pri) 14%,var(--card));color:var(--pri);display:grid;place-items:center;flex-shrink:0;transition:transform .25s,background .25s,color .25s}
+.p-go .svg{width:15px;height:15px}
+.prod:hover .p-go{background:var(--pri);color:#fff;transform:translateX(3px)}
+.tag.rev{display:inline-flex;align-items:center;gap:6px;padding:3px 11px 3px 5px;background:linear-gradient(135deg,#fff8e6,#ffe4a3);color:#4a2c00;border:1px solid rgba(245,158,11,.45);box-shadow:0 4px 12px rgba(18,40,24,.12)}
+.prod .tag.rev{position:absolute;right:10px;top:11px;z-index:3;margin:0}
+.tag.lg.rev{padding:4px 14px 4px 6px}
+.prod img.ti3d,.ti3d{width:24px!important;height:24px!important;padding:0!important;position:static!important;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,.22));flex-shrink:0;transform:none!important}
+.tag.lg.rev .ti3d{width:28px!important;height:28px!important}
