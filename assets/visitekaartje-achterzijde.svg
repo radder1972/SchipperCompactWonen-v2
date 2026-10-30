@@ -4,6 +4,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap');
   .f-head { font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif; }
   .f-body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+  .chair-lift { transform-origin: 115px 195px; animation: staOpChair 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  .wedge-lift { transform-origin: 120px 218px; animation: staOpWedge 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  @keyframes staOpChair { 0%, 18% { transform: translate(0, 4px) rotate(0deg); } 48%, 68% { transform: translate(2px, -13px) rotate(-6.5deg); } 92%, 100% { transform: translate(0, 4px) rotate(0deg); } }
+  @keyframes staOpWedge { 0%, 18% { transform: scaleY(.52); } 48%, 68% { transform: scaleY(1.12); } 92%, 100% { transform: scaleY(.52); } }
  </style>
  <linearGradient id="leftG" x1="0%" y1="0%" x2="100%" y2="100%">
   <stop offset="0%" stop-color="#073d19"/>
@@ -50,9 +54,9 @@
   <rect x="44" y="218" width="152" height="12" rx="6" fill="#04260e"/>
   <rect x="58" y="226" width="22" height="9" rx="4" fill="#021708"/>
   <rect x="160" y="226" width="22" height="9" rx="4" fill="#021708"/>
-  <path d="M52 218L56 184L184 176L188 218Z" fill="url(#lf)"/>
-  <path d="M64 210L176 202M64 198L176 190" stroke="#5fd67a" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
-  <g transform="translate(0,-10) rotate(-4.5 120 165)">
+  <g class="wedge-lift"><path d="M52 218L56 184L184 176L188 218Z" fill="url(#lf)"/>
+  <path d="M64 210L176 202M64 198L176 190" stroke="#5fd67a" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/></g>
+  <g class="chair-lift">
    <path d="M68 38C68 18 88 10 120 10s52 8 52 28l6 116H62z" fill="url(#lb)"/>
    <g clip-path="url(#lc)" stroke="#fff" stroke-opacity=".34" stroke-width="2.2" fill="none">
     <path d="M-50 14L50 140M50 14L-50 140"/><path d="M-30 14L70 140M70 14L-30 140"/><path d="M-10 14L90 140M90 14L-10 140"/>
