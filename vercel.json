@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/collectie.html", "destination": "/#/cat/zitcomfort", "permanent": false },
+    { "source": "/collectie", "destination": "/#/cat/zitcomfort", "permanent": false },
+    { "source": "/afspraak.html", "destination": "/#/afspraak", "permanent": false },
+    { "source": "/afspraak", "destination": "/#/afspraak", "permanent": false }
+  ]
 }

@@ -15,10 +15,93 @@ const swTop=`<svg class="sec-wave top" viewBox="0 0 1440 64" preserveAspectRatio
 const swBot=`<svg class="sec-wave bot" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">${swDefs}<path d="M0,26 C480,74 960,-12 1440,36 L1440,64 L0,64 Z" fill="rgba(31,157,63,.06)"/><path d="M0,34 C480,78 960,-6 1440,42 L1440,48 C960,2 480,84 0,40 Z" fill="url(#secSw)"/><path class="wave-bg" d="M0,39 C480,83 960,0 1440,46 L1440,65 L0,65 Z"/></svg>`;
 const cta=`<section><div class="wrap"><div class="cta reveal"><svg class="cta-art" viewBox="0 0 1200 320" preserveAspectRatio="none" aria-hidden="true"><path d="M-60,280 C260,200 540,40 920,110 C1080,140 1160,70 1260,20 L1260,320 L-60,320 Z" fill="rgba(255,255,255,.07)"/><path d="M-40,300 C320,210 620,70 1020,150 C1140,174 1210,120 1260,80" fill="none" stroke="rgba(255,194,71,.38)" stroke-width="3"/></svg><img class="cicon" src="icon-afspraak.svg" alt=""><h2 class="t">Neem de tijd voor het kiezen</h2><p>Kom langs in onze showroom of laat ons bij u thuis adviseren.</p><a class="btn" href="#/afspraak">Afspraak maken</a></div></div></section>`;
 const featured=[...products['zitcomfort_sta-op-stoelen']].filter(p=>p.price).slice(0,4).concat(products['zitcomfort_seniorenstoelen'].slice(0,1),products['ligcomfort_hooglaag-bedden'].slice(0,1),products['ligcomfort_senioren-ledikanten'].slice(0,1),products['zorgcomfort_loophulpmiddelen'].slice(0,1));
+const checklistSec=`<section class="alt" id="checklist">${swTop}<div class="wrap lead-grid">
+ <div class="doc-card card reveal">
+  <div class="doc-top"><span><b>PDF Gids</b> · Uitgave 2026</span><span>Schipper Zorgadvies</span></div>
+  <span class="tag lg">Zelftest in 3 Minuten</span>
+  <h3>De Ergonomische Zithouding Checklist</h3>
+  <p class="ask">Herken de 5 meest voorkomende zitfouten en voorkom chronische rug-, nek- en heupklachten.</p>
+  <ul class="feat doc-list">
+   <li><b>Zithoogte:</b> Rusten uw voeten plat op de vloer zonder druk in de knieholte?</li>
+   <li><b>Zitdiepte:</b> Past er een vuist tussen uw knieholte en de voorzijde van de zitting?</li>
+   <li><b>Lendensteun:</b> Wordt uw onderrug actief ondersteund bij ontspannen zitten?</li>
+   <li><b>Opstaan:</b> Kunt u zelfstandig opstaan zonder pijnlijke schouders of knieën?</li>
+  </ul>
+  <div class="doc-foot"><span>Samengesteld door bewegingstechnologen</span><b class="tag">100% Gratis PDF</b></div>
+ </div>
+ <div class="reveal">
+  <span class="tag lg">Directe PDF Download</span>
+  <h2 class="t" style="margin-top:8px">Zit u wel echt goed? Doe binnen 3 minuten de check.</h2>
+  <p class="prose">Een verkeerde zithouding kan sluipenderwijs leiden tot rug-, nek- en heupklachten of vermoeidheid bij het opstaan. Download onze gratis <b>‘Zithouding Checklist’ (PDF)</b> en ontdek direct of uw huidige stoel uw lichaam voldoende ondersteunt.</p>
+  <form id="cl-form" class="card cl-form">
+   <div class="cl-row">
+    <label><span>Uw voornaam *</span><input type="text" id="cl-name" required placeholder="Bijv. Geert"></label>
+    <label><span>Uw e-mailadres *</span><input type="email" id="cl-email" required placeholder="naam@voorbeeld.nl"></label>
+   </div>
+   <button type="submit" class="btn">📥 Download de PDF Checklist (1.2 MB)</button>
+   <small class="ask">🔒 Geen spam. Direct op uw scherm te openen en op te slaan.</small>
+  </form>
+  <div id="cl-done" class="card cl-done" hidden>✓ <b>Bedankt!</b> De checklist download is direct gestart. <a href="assets/zithouding-checklist.pdf" download="Schipper-Zithouding-Checklist.pdf">Klik hier om de PDF nogmaals te openen</a>.</div>
+ </div>
+</div>${swBot}</section>`;
+
+const showroomSec=`<section id="showroom"><div class="wrap"><div class="sr-spot card reveal">
+ <div class="sr-spot-img">
+  <img src="assets/winkel_interieur.jpg" alt="Sfeervolle showroom van Schipper Compact Wonen in Dordrecht met sta-op stoelen en adviesbalie" loading="lazy">
+  <span class="sr-badge">📍 Merwedestraat 239, Dordrecht</span>
+ </div>
+ <div class="sr-spot-body">
+  <span class="tag lg">Welkom in onze showroom</span>
+  <h2 class="t" style="margin-top:8px">Kom ontspannen proefzitten in Dordrecht</h2>
+  <p class="prose">In onze sfeervolle showroom aan de Merwedestraat ervaart u in alle rust het verschil van een ergonomisch aangemeten sta-op stoel of zorgbed. Geen opdringerige verkooppraatjes, maar een warm welkom met verse koffie en eerlijk deskundig advies van onze bewegingstechnoloog.</p>
+  <ul class="feat">
+   <li>Ruim 40 demonstratiestoelen en zorgbedden direct uitproberen</li>
+   <li>Gratis parkeren voor de deur &amp; gelijkvloerse entree</li>
+   <li>Persoonlijk meetadvies van bewegingstechnoloog Geertjan</li>
+  </ul>
+  <div class="acts" style="margin-top:18px">
+   <button type="button" class="btn" data-open-showroom="1">Bekijk showroom &amp; foto's</button>
+   <a class="btn ghost" href="#/afspraak">Plan adviesgesprek</a>
+  </div>
+ </div>
+</div></div></section>`;
+
+const geertjanSec=`<section class="alt" id="ervaringen">${swTop}<div class="wrap">
+ <div class="gj-grid reveal">
+  <div class="gj-photo">
+   <img src="assets/geertjan_advies_showroom.jpg" alt="Geertjan Klein Haneveld, bewegingstechnoloog, adviseert een klant met ergonomisch meetadvies" loading="lazy">
+   <span class="gj-pill"><i></i>Geertjan Klein Haneveld • Bewegingstechnoloog</span>
+  </div>
+  <div class="gj-copy">
+   <span class="tag lg">Uw vaste specialist</span>
+   <blockquote class="gj-quote">“Als bewegingstechnoloog heb ik zowel medische als technische kennis. Ik begrijp de lichamelijke uitdaging én weet wat er technisch gewenst is. Mijn passie is om obstakels uit de weg te ruimen en mensen weer mobieler en zelfstandiger te maken.”</blockquote>
+   <p class="prose">Iedereen wil oud worden, maar niemand wil het zijn. Met de jaren komen de nodige gebreken en bewegen wordt moeizamer. Wij leveren al ruim 35 jaar ergonomische zitoplossingen, seniorenbedden en zorghulpmiddelen voor zorgverzekeraars, zorginstellingen en particulieren. In Dordrecht en de omliggende regio noemt men ons daarom niet voor niets dé ‘zit- en zorgspecialist’.</p>
+   <div class="gj-sig"><b>Geertjan Klein Haneveld</b><small>Bewegingstechnoloog &amp; Adviseur • Schipper Compact Wonen</small></div>
+  </div>
+ </div>
+ <h2 class="t" style="margin-top:56px">Wat klanten vertellen</h2>
+ <p class="sub">Ervaringen van klanten uit Dordrecht, Papendrecht, Sliedrecht en omgeving.</p>
+ <div class="grid g3">
+  ${[
+   ['Wat een verademing vergeleken met de reguliere meubelgiganten. Geertjan kwam keurig op tijd aan huis voor het advies en een vakkundige meting. Geen seconde gepusht om te kopen. De stoel werd binnen een week geleverd en perfect afgesteld. Mijn man kan na zijn heupoperatie eindelijk weer zelfstandig uit zijn stoel!','Mevr. M. van Vliet','Regio Dordrecht • Fitform 570 Vario'],
+   ['We zochten een mooie stoel die niet direct als ‘ziekenhuisstoel’ oogt in onze gerenoveerde woonkamer. De deskundigheid viel meteen op: binnen 10 minuten legde de adviseur uit waarom mijn vorige stoel rugpijn gaf. De bekleding matcht perfect met ons interieur.','Dhr. en Mw. De Jong','Regio Papendrecht • Maatwerk Relaxfauteuil'],
+   ['We hebben gekozen voor een gereconditioneerde Fitform occasion. De stoel is letterlijk niet van nieuw te onderscheiden, rook fris en werkt vlekkeloos. Binnen 4 dagen bezorgd en de bezorger heeft de tijd genomen om alles aan mijn vader uit te leggen.','Dhr. H. Bakker','Regio Sliedrecht • Jong Gebruikte Occasion']
+  ].map(([q,n,m])=>`<div class="card reveal"><div class="stars">★★★★★</div><p>“${q}”</p><br><b>${n}</b><small class="ask" style="display:block;margin-top:2px">${m}</small></div>`).join('')}
+ </div>
+</div>${swBot}</section>`;
+
+const werkwijzeSec=`<section id="werkwijze"><div class="wrap"><h2 class="t">Al ruim 35 jaar uw vertrouwde zit- en zorgspecialist</h2><p class="sub">Van persoonlijk meetadvies tot vakkundige levering en service bij u thuis.</p><div class="steps">
+ ${[
+  ['Ergonomisch maatwerk','Onze bewegingstechnoloog heeft zowel medische als technische kennis. Wij kijken naar uw lichamelijke uitdaging en meten uw zithoogte, zitdiepte, armleggerhoogte en lendensteun exact na.',['Zitdiepte','Zithoogte','Armleggerhoogte','Lendensteun']],
+  ['Gratis advies aan huis','Moeite met reizen of wilt u in uw eigen vertrouwde woonkamer advies? Onze bewegingstechnoloog komt kosteloos en vrijblijvend bij u thuis langs voor een persoonlijk zitadvies op maat.',['Dordrecht · Zwijndrecht · Papendrecht · Sliedrecht','Alblasserdam · Ridderkerk · Barendrecht · Rotterdam']],
+  ['Eigen bezorg- & servicedienst','Van advies tot levering: wij bezorgen zelf, stellen de stoel vakkundig af in uw woonkamer en nemen uw oude stoel indien gewenst direct mee.',['Eigen bezorgers','Geen voorrijkosten','Oude stoel retour']]
+ ].map(([t,d,tags],i)=>`<div class="card step reveal"><span>${i+1}</span><h3>${t}</h3><p>${d}</p><div class="stags">${tags.map(x=>`<i>${x}</i>`).join('')}</div></div>`).join('')}
+</div></div></section>`;
+
 const views={
 home:()=>`<section class="hero"><div class="wrap"><div><h1>De specialist in sta-op stoelen en zorghulpmiddelen</h1>
-<p>Al ruim 35 jaar leveren wij aan zorgverzekeraars, zorginstellingen en particulieren. Persoonlijk advies van een ervaren bewegingstechnoloog.</p>
-<a class="btn" href="#/afspraak">Afspraak maken</a><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk assortiment</a>
+<p>Al ruim 35 jaar leveren wij aan zorgverzekeraars, zorginstellingen en particulieren. Persoonlijk advies van een ervaren bewegingstechnoloog — bij u thuis of in onze showroom in Dordrecht.</p>
+<a class="btn" href="#/afspraak">Afspraak maken</a><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk assortiment</a><button type="button" class="btn ghost" data-open-showroom="1">Bekijk showroom</button>
 <div class="stats"><div><b>35+</b><span>jaar ervaring</span></div><div><b>1 jaar</b><span>garantie op occasions</span></div><div><b>Op maat</b><span>advies & thuisbezoek</span></div></div></div>
 <div class="sl" role="region" aria-roledescription="carrousel" aria-label="Onze producten in een gezellig interieur"><div class="sl-track">${slides.map((s,i)=>{const p=bySlug[s.slug]||{};return `<a class="sl-slide${i?'':' on'}" href="#/product/${s.slug}" aria-label="${p.name||''}" ${i?'tabindex="-1"':''}><img src="${i<2?s.img:'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}" data-src="${s.img}" alt="${p.name||''} in een gezellig interieur"><span class="sl-cap"><em>${names[p.cat]||''}</em><b>${p.name||''}</b><small>${p.price?'Vanaf '+eur(p.price.toFixed(2)):'Prijs op aanvraag'} · Bekijk <i>→</i></small></span></a>`}).join('')}</div>
 <button class="sl-nav sl-prev" aria-label="Vorige foto"></button><button class="sl-nav sl-next" aria-label="Volgende foto"></button>
@@ -40,31 +123,81 @@ home:()=>`<section class="hero"><div class="wrap"><div><h1>De specialist in sta-
  <path d="M0,66 C380,136 860,-4 1440,70 L1440,79 C860,10 380,146 0,74 Z" fill="url(#goldSw)"/>
  <path class="wave-bg" d="M0,73 C380,143 860,8 1440,78 L1440,122 L0,122 Z"/>
 </svg></section>
-<section><div class="wrap"><h2 class="t">Onze productgroepen</h2><p class="sub">Alles voor zit-, lig- en zorgcomfort onder één dak.</p><div class="grid g3">
+<section><div class="wrap"><h2 class="t">Onze productgroepen</h2><p class="sub">Alles voor zit-, lig- en zorgcomfort onder één dak in Dordrecht.</p><div class="grid g3">
 ${Object.entries(groups).map(([k,g])=>`<a class="card reveal" href="#/cat/${k}"><div class="ico">${g.i}</div><h3>${g.t}</h3><p>${g.d}</p></a>`).join('')}</div></div></section>
 <section class="alt">${swTop}<div class="wrap split"><div class="reveal"><h2 class="t">Sta op stoel op maat</h2><p class="prose">Net zoals bij schoenen of een maatkostuum passen wij een stoel helemaal aan op uw persoonlijke maten en wensen. Kom ons <a href="#/cat/zitcomfort_sta-op-stoelen">ruime assortiment</a> bekijken en proberen, of laat ons u thuis bezoeken.</p><a class="btn" href="#/informatie">Meer informatie</a></div>
-<div class="card reveal"><div class="ico">${icons.recycle}</div><h3>Occasion sta-op stoelen</h3><p>Onze tweedehands sta-op stoelen zijn altijd gereinigd en gereviseerd, met standaard 1 jaar garantie.</p><br><a class="btn ghost" href="https://www.staopstoelen.nl/product-categorie/occasion-sta-op-stoelen/" target="_blank" rel="noopener">Bekijk occasions ↗</a></div></div>${swBot}</section>
-<section><div class="wrap"><h2 class="t">Een greep uit ons assortiment</h2><p class="sub">Een selectie van onze populairste producten.</p><div class="grid g4">${featured.map(prod).join('')}</div></div></section>
-<section class="alt">${swTop}<div class="wrap"><h2 class="t">Waarom Schipper?</h2><p class="sub">Persoonlijk, deskundig en met aandacht voor uw situatie.</p><div class="grid g4">
-${[[icons.doctor,'Bewegingstechnoloog','Advies van een ervaren specialist, geen snelle verkoper.'],[icons.ruler,'Altijd op maat','Stoelen aangepast aan uw maten en wensen.'],[icons.home,'Thuisbezoek','Liever thuis proberen? Wij komen langs.'],[icons.shield,'Garantie','Gereviseerde occasions met 1 jaar garantie.']].map(([i,t,d])=>`<div class="card reveal"><div class="ico">${i}</div><h3>${t}</h3><p>${d}</p></div>`).join('')}</div></div>${swBot}</section>
-<section><div class="wrap"><h2 class="t">Zo werkt het</h2><p class="sub">In drie stappen naar de juiste stoel.</p><div class="steps">
-${[['Maak een afspraak','Bel ons of plan online een adviesgesprek.'],['Proefzitten','Probeer verschillende modellen in de showroom of thuis.'],['Op maat geleverd','Wij leveren, stellen af en leggen alles uit.']].map(([t,d],i)=>`<div class="step reveal"><span>${i+1}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}</div></div></section>
-<section class="alt">${swTop}<div class="wrap"><h2 class="t">Wat klanten zeggen</h2><p class="sub">Ervaringen van klanten uit Dordrecht en omgeving.</p><div class="grid g3">
-${[['Fijne stoel en heel prettig advies. We zijn er echt goed geholpen.','Familie de Jong'],['Eindelijk zit mijn moeder comfortabel. Alles werd thuis netjes afgesteld.','Mevr. Visser'],['Snelle levering en deskundig personeel. Aanrader!','Zorginstelling Merwede']].map(([q,n])=>`<div class="card reveal"><div class="stars">★★★★★</div><p>“${q}”</p><br><b>${n}</b></div>`).join('')}</div></div>${swBot}</section>
+<div class="card reveal"><div class="ico">${icons.recycle}</div><h3>Occasion sta-op stoelen</h3><p>Onze tweedehands sta-op stoelen zijn altijd gereinigd en gereviseerd, met standaard 1 jaar garantie.</p><br><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk occasions →</a></div></div>${swBot}</section>
+<section><div class="wrap"><h2 class="t">Een greep uit ons assortiment</h2><p class="sub">Een selectie van onze populairste producten uit alle categorieën.</p><div class="grid g4">${featured.map(prod).join('')}</div><div style="margin-top:28px;text-align:center"><a class="btn ghost" href="#/cat/zitcomfort">Bekijk alle ${all.length} modellen in de collectie →</a></div></div></section>
+${checklistSec}
+${werkwijzeSec}
+${geertjanSec}
+${showroomSec}
 <section><div class="wrap"><h2 class="t">Veelgestelde vragen</h2><p class="sub">Antwoord op de meest gestelde vragen over onze werkwijze.</p><div class="prose">
-${[['Kan ik een stoel eerst proberen?','Zeker, in onze showroom in Dordrecht. Ook thuis kunnen we u adviseren.'],['Zijn jullie een webwinkel?','Nee. Wij werken persoonlijk: u wordt geholpen door een ervaren bewegingstechnoloog.'],['Hebben jullie tweedehands stoelen?','Ja, gereinigd en gereviseerd, met 1 jaar garantie.'],['Wordt een stoel vergoed?','Dat hangt af van uw verzekeraar en situatie. Wij denken graag met u mee.']].map(([q,a])=>`<details class="faq reveal"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div></section>${cta}`,
-informatie:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / Informatie</div><h1>Informatie</h1><div class="prose">
-<p>Wij leveren al ruim 35 jaar sta-op stoelen en zorghulpmiddelen voor onder andere zorgverzekeraars, zorginstellingen en particulieren. Men noemt ons in de regio ook wel ‘zit-specialist’ en ‘sta op stoel specialist’.</p>
-<p>Iedereen wil oud worden maar niemand wil het zijn. Met ouder worden komen de nodige gebreken. Onze passie is om met onze producten deze gebreken te ontkrachten.</p>
-<p>Wij zijn geen webwinkel: u bent van harte welkom in onze showroom. U wordt niet geholpen door een ‘snelle verkoper’ maar door een ervaren bewegingstechnoloog.</p>
-<p>Goed zitten is een vaak onderschatte factor die bijdraagt aan uw gezondheid. Wij kunnen u ook thuis bezoeken als dat makkelijker is.</p><a class="btn" href="#/afspraak">Afspraak maken</a></div></div></div>`,
-contact:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / Contact</div><h1>Contact</h1><div class="split"><div class="card"><h3>Schipper Compact Wonen BV</h3><p>Merwedestraat 239<br>3313 GT Dordrecht<br><br>Tel: <a href="tel:0786314858">078 – 631 4858</a><br>Mail: <a href="mailto:info@schippercompactwonen.nl">info@schippercompactwonen.nl</a></p><br><a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=Merwedestraat+239,+3313+GT+Dordrecht" target="_blank" rel="noopener">Plan route in Google Maps ↗</a></div>
-<iframe title="Google Maps - Schipper Compact Wonen BV, Merwedestraat 239, 3313 GT Dordrecht" style="width:100%;height:340px;border:0;border-radius:16px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=Schipper+Compact+Wonen+BV,+Merwedestraat+239,+3313+GT+Dordrecht&hl=nl&z=16&output=embed"></iframe></div></div></div>`,
+${[['Kan ik een stoel eerst proberen?','Zeker, in onze showroom aan de Merwedestraat 239 in Dordrecht staan ruim 40 modellen klaar. Ook thuis kunnen we u vrijblijvend adviseren.'],['Zijn jullie een webwinkel?','Nee. Wij werken uitsluitend met persoonlijk maatwerkadvies: u wordt geholpen door onze ervaren bewegingstechnoloog Geertjan Klein Haneveld.'],['Hebben jullie tweedehands stoelen?','Ja, wij hebben een ruime collectie jong gebruikte Fitform en Farstrup occasions — altijd professioneel gereinigd, technisch gereviseerd en geleverd met 1 jaar garantie.'],['Wordt een stoel of zorgbed vergoed?','Dat hangt af van uw zorgverzekeraar, gemeente (Wmo) en medische situatie. Wij begeleiden u graag bij het aanvragen van een vergoeding of PGB.']].map(([q,a])=>`<details class="faq reveal"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></div></section>${cta}`,
+
+informatie:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / Informatie</div><h1>Over Schipper Compact Wonen</h1>
+<div class="gj-grid" style="margin-top:24px">
+ <div class="prose">
+  <p>Wij leveren al ruim 35 jaar sta-op stoelen, hoog/laag bedden en zorghulpmiddelen voor onder andere zorgverzekeraars, zorginstellingen en particulieren in Dordrecht, de Drechtsteden en Rijnmond. Men noemt ons in de regio ook wel dé <b>‘zit- en zorgspecialist’</b>.</p>
+  <p>Iedereen wil oud worden maar niemand wil het zijn. Met ouder worden komen de nodige gebreken. Onze passie is om met ergonomisch aangemeten producten deze gebreken te ontkrachten en u zo lang mogelijk zelfstandig en comfortabel thuis te laten wonen.</p>
+  <p>Wij zijn geen webwinkel: u bent van harte welkom in onze showroom aan de Merwedestraat 239 in Dordrecht. U wordt niet geholpen door een ‘snelle verkoper’, maar door ervaren bewegingstechnoloog <b>Geertjan Klein Haneveld</b>.</p>
+  <p>Goed zitten is een vaak onderschatte factor die bijdraagt aan uw gezondheid. Wij ontvangen u graag met verse koffie in Dordrecht of bezoeken u kosteloos thuis als dat makkelijker is.</p>
+  <div class="acts" style="margin-top:20px"><a class="btn" href="#/afspraak">Plan een adviesafspraak</a><button type="button" class="btn ghost" data-open-showroom="1">Bekijk onze showroom</button><a class="btn ghost" href="nieuwe-zaak.html">De Nieuwe Zaak (Storyboard) ↗</a></div>
+ </div>
+ <div class="gj-photo">
+  <img src="assets/geert_in_de_winkel_welkom.jpg" alt="Geertjan Klein Haneveld heet u welkom in de showroom van Schipper Compact Wonen in Dordrecht" loading="lazy">
+  <span class="gj-pill"><i></i>Geertjan Klein Haneveld • Bewegingstechnoloog</span>
+ </div>
+</div></div></div>${werkwijzeSec}${checklistSec}${showroomSec}`,
+
+contact:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / Contact</div><h1>Contact &amp; Showroom Dordrecht</h1><div class="split">
+<div class="card">
+ <h3>Schipper Compact Wonen BV</h3>
+ <p><b>Bezoekadres showroom:</b><br>Merwedestraat 239<br>3313 GT Dordrecht <small>(gratis parkeren voor de deur)</small></p>
+ <p style="margin-top:14px"><b>Contactgegevens:</b><br>Tel: <a href="tel:0786314858"><b>078 – 631 4858</b></a><br>Mail: <a href="mailto:info@schippercompactwonen.nl">info@schippercompactwonen.nl</a></p>
+ <p style="margin-top:14px"><b>Openingstijden showroom:</b><br>Di t/m Vr: 10:00 – 16:00 uur<br>Ma &amp; Za: Op afspraak (ook thuisbezoek mogelijk)</p>
+ <p class="ask" style="margin-top:14px">KvK: 24391284 · BTW: NL815610427B01</p>
+ <div class="acts" style="margin-top:18px">
+  <a class="btn" href="#/afspraak">Plan een afspraak</a>
+  <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=Merwedestraat+239,+3313+GT+Dordrecht" target="_blank" rel="noopener">Plan route in Google Maps ↗</a>
+ </div>
+</div>
+<div>
+ <iframe title="Google Maps - Schipper Compact Wonen BV, Merwedestraat 239, 3313 GT Dordrecht" style="width:100%;height:340px;border:0;border-radius:16px;box-shadow:var(--sh)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=Schipper+Compact+Wonen+BV,+Merwedestraat+239,+3313+GT+Dordrecht&hl=nl&z=16&output=embed"></iframe>
+ <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+  <img src="assets/winkel_interieur.jpg" alt="Interieur showroom Dordrecht" style="border-radius:12px;height:140px;width:100%;object-fit:cover;cursor:pointer" data-open-showroom="1">
+  <img src="assets/winkel_showroom_nieuw.jpg" alt="Voorgevel en parkeren Merwedestraat 239 Dordrecht" style="border-radius:12px;height:140px;width:100%;object-fit:cover;cursor:pointer" data-open-showroom="1">
+ </div>
+</div></div></div></div>`,
+
 afspraak:s=>afspraakHtml(s&&bySlug[s]?bySlug[s].name:''),
-cat:k=>{const g=groups[k];
- if(g)return `<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / ${g.t}</div><h1>${g.t}</h1><p class="sub">${g.d}</p>${g.subs.map(s=>`<h2 class="t" style="margin-top:40px"><a href="#/cat/${s}">${names[s]}</a></h2><div class="grid g4">${products[s].map(prod).join('')}</div>`).join('')}</div></div>`;
- if(!products[k])return views.nf();const gk=k.split('_')[0];
- return `<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / <a href="#/cat/${gk}">${groups[gk].t}</a> / ${names[k]}</div><h1>${names[k]}</h1><p class="sub">Neem gerust contact op voor advies en prijzen.</p><input id="q" type="search" placeholder="Zoek in deze categorie…" style="width:100%;max-width:360px;margin-bottom:24px"><div class="grid g4" id="pl">${products[k].map(prod).join('')}</div></div></div>`},
+
+cat:k=>{
+ const isAll=!k||k==='all';
+ const g=groups[k];
+ const items=isAll?all:g?g.subs.flatMap(s=>products[s].map(p=>({...p,cat:s}))):(products[k]||[]).map(p=>({...p,cat:k}));
+ if(!isAll&&!g&&!products[k])return views.nf();
+ const gk=!isAll&&!g?k.split('_')[0]:k;
+ const title=isAll?'Complete Collectie':g?g.t:names[k];
+ const desc=isAll?`Ontdek onze actuele collectie van ${all.length} modellen verdeeld over zitcomfort, ligcomfort en zorgcomfort — vrijblijvend uit te proberen in onze showroom in Dordrecht of bij u thuis.`:g?g.d:'Neem gerust contact op voor persoonlijk maatwerkadvies en actuele uitvoeringen.';
+ const brands=[...new Set(items.map(x=>all.find(a=>a.slug===x.slug)?.brand).filter(Boolean))].sort();
+ return `<div class="page"><div class="wrap">
+  <div class="crumbs"><a href="#/">Home</a>${!isAll&&!g?` / <a href="#/cat/${gk}">${groups[gk].t}</a>`:''} / ${title}</div>
+  <h1>${title}</h1><p class="sub">${desc}</p>
+  <div class="cat-tabs">
+   <a class="ctab${isAll?' on':''}" href="#/cat/all">Alle producten <span>${all.length}</span></a>
+   ${Object.entries(groups).map(([gk2,gr])=>{const cnt=gr.subs.reduce((n,s)=>n+products[s].length,0);return `<a class="ctab${k===gk2||(!isAll&&!g&&gk===gk2)?' on':''}" href="#/cat/${gk2}">${gr.t} <span>${cnt}</span></a>`}).join('')}
+  </div>
+  ${g?`<div class="sub-pills">${g.subs.map(s=>`<a class="spill" href="#/cat/${s}">${names[s]} (${products[s].length})</a>`).join('')}</div>`:''}
+  <div class="fbar card">
+   <input id="q" type="search" placeholder="Zoek op model, merk of trefwoord…">
+   <select id="f-cond" aria-label="Filter op conditie"><option value="">Alle condities (Nieuw &amp; Occasion)</option><option value="nieuw">Nieuw op maat</option><option value="occasion">Occasion / Jong gebruikt</option></select>
+   ${brands.length?`<select id="f-brand" aria-label="Filter op merk"><option value="">Alle merken (${brands.length})</option>${brands.map(b=>`<option value="${b}">${b}</option>`).join('')}</select>`:''}
+   <select id="f-sort" aria-label="Sorteer op"><option value="default">Sortering: Aanbevolen</option><option value="price-asc">Prijs: laag → hoog</option><option value="price-desc">Prijs: hoog → laag</option><option value="name">Naam: A → Z</option></select>
+  </div>
+  <p class="ask" id="f-count" style="margin:14px 0">${items.length} modellen getoond</p>
+  <div class="grid g4" id="pl">${items.map(p=>prod({name:p.name,slug:p.slug,img:p.img||(p.images&&p.images[0])||'',price:p.price?(typeof p.price==='number'?p.price.toFixed(2):p.price):'',old:p.old?(typeof p.old==='number'?p.old.toFixed(2):p.old):'',condition:p.condition})).join('')}</div>
+ </div></div>${cta}`},
 product:s=>{const p=bySlug[s];if(!p)return views.nf();const g=Object.keys(groups).find(k=>p.cat.startsWith(k));
  const rel=all.filter(x=>x.cat===p.cat&&x.slug!==p.slug).slice(0,4).map(x=>({name:x.name,slug:x.slug,img:x.images[0]||'',price:x.price?x.price.toFixed(2):'',old:x.old?x.old.toFixed(2):'',condition:x.condition}));
  const sp=Object.entries(p.specs||{});
@@ -80,15 +213,47 @@ product:s=>{const p=bySlug[s];if(!p)return views.nf();const g=Object.keys(groups
  ${sp.length?`<h2 class="t" style="margin-top:40px">Specificaties</h2><table class="spec">${sp.map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>`:''}
  ${rel.length?`<h2 class="t" style="margin-top:60px">Meer in ${names[p.cat]}</h2><div class="grid g4">${rel.map(prod).join('')}</div>`:''}</div></div>`},
 nf:()=>`<div class="page"><div class="wrap"><h1>Pagina niet gevonden</h1><a class="btn" href="#/">Naar home</a></div></div>`};
+function initFilters(){
+ const pl=$('#pl'),q=$('#q'),fc=$('#f-cond'),fb=$('#f-brand'),fs=$('#f-sort'),cnt=$('#f-count');
+ if(!pl||!q)return;
+ const cards=[...pl.querySelectorAll('.prod')];
+ const run=()=>{
+  const qv=(q.value||'').toLowerCase().trim(),cv=fc?fc.value:'',bv=fb?fb.value:'',sv=fs?fs.value:'default';
+  let vis=[];
+  cards.forEach(c=>{
+   const p=bySlug[c.dataset.s]||{};
+   const isOcc=(p.condition||'').toLowerCase()&&p.condition.toLowerCase()!=='nieuw';
+   const okQ=!qv||(p.name||'').toLowerCase().includes(qv)||(p.brand||'').toLowerCase().includes(qv)||(p.short||'').toLowerCase().includes(qv);
+   const okC=!cv||(cv==='nieuw'?!isOcc:isOcc);
+   const okB=!bv||p.brand===bv;
+   const show=okQ&&okC&&okB;
+   c.style.display=show?'':'none';
+   if(show)vis.push({c,p});
+  });
+  if(sv!=='default'){
+   vis.sort((a,b)=>sv==='name'?(a.p.name||'').localeCompare(b.p.name||''):sv==='price-asc'?((a.p.price||999999)-(b.p.price||999999)):((b.p.price||0)-(a.p.price||0)));
+   vis.forEach(x=>pl.appendChild(x.c));
+  }else cards.forEach(c=>pl.appendChild(c));
+  if(cnt)cnt.textContent=`${vis.length} ${vis.length===1?'model':'modellen'} getoond`;
+ };
+ [q,fc,fb,fs].filter(Boolean).forEach(el=>{el.oninput=run;el.onchange=run});
+}
+function initChecklist(){
+ const f=$('#cl-form'),d=$('#cl-done');if(!f)return;
+ f.onsubmit=e=>{
+  e.preventDefault();
+  if(d)d.hidden=false;f.style.opacity='.6';
+  const a=document.createElement('a');a.href='assets/zithouding-checklist.pdf';a.download='Schipper-Zithouding-Checklist.pdf';document.body.appendChild(a);a.click();a.remove();
+ };
+}
 function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.classList.toggle('on',l.getAttribute('href')===(location.hash||'#/')||(location.hash.startsWith(l.getAttribute('href'))&&l.getAttribute('href').length>3&&l.getAttribute('href')!=='#/'))));const [,r,a]=location.hash.split('/');const v=views[r||'home'];app.innerHTML=(v?v(a):views.nf());
  $('#nav').classList.remove('open');scrollTo(0,0);document.title=(r&&r!=='home'?'':'')+'Schipper Compact Wonen';
- const q=$('#q');if(q)q.oninput=()=>document.querySelectorAll('#pl .prod').forEach(c=>c.style.display=c.querySelector('h3').textContent.toLowerCase().includes(q.value.toLowerCase())?'':'none');
- initAfspraak();initSlider();
+ initFilters();initChecklist();initAfspraak();initSlider();
  const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.1});
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.2.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.3.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};
@@ -99,9 +264,27 @@ const up=document.createElement('button');up.className='up';up.textContent='↑'
 addEventListener('scroll',()=>up.classList.toggle('show',scrollY>500));
 document.querySelectorAll('[data-i]').forEach(e=>e.innerHTML=icons[e.dataset.i]);
 
-// Afspraakknoppen openen de snelle "Bel mij"-pop-up; de agenda staat op #/afspraak
-document.addEventListener('click',e=>{const l=e.target.closest('a[href^="#/afspraak"]');if(!l||l.closest('.ap-modal'))return;
- const s=l.getAttribute('href').split('/')[2];e.preventDefault();openAfspraakModal(s&&bySlug[s]?bySlug[s].name:'')});
+// Showroom modal & afspraakknoppen
+const srModal=$('#showroom-modal');
+document.addEventListener('click',e=>{
+ if(e.target.closest('[data-open-showroom]')){
+  if(srModal){const m=$('#sr-map');if(m&&!m.src)m.src=m.dataset.src;srModal.hidden=false;document.body.style.overflow='hidden'}
+  return;
+ }
+ if(e.target.closest('[data-close-showroom]')){
+  if(srModal){srModal.hidden=true;document.body.style.overflow=''}
+ }
+ const pbtn=e.target.closest('[data-sr-photo]');
+ if(pbtn){
+  const t=pbtn.dataset.srPhoto,im=$('#sr-img');
+  if(im)im.src=t==='interieur'?'assets/winkel_interieur.jpg':'assets/winkel_showroom_nieuw.jpg';
+  document.querySelectorAll('[data-sr-photo]').forEach(b=>b.classList.toggle('on',b===pbtn));
+  return;
+ }
+ const l=e.target.closest('a[href^="#/afspraak"]');if(!l||l.closest('.ap-modal'))return;
+ const s=l.getAttribute('href').split('/')[2];e.preventDefault();openAfspraakModal(s&&bySlug[s]?bySlug[s].name:'');
+});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&srModal&&!srModal.hidden){srModal.hidden=true;document.body.style.overflow=''}});
 window.__slugFor=n=>(all.find(p=>p.name===n)||{}).slug||'';
 
 function initSlider(){const sl=document.querySelector('.sl');if(!sl)return;
