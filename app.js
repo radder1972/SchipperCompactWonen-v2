@@ -19,7 +19,24 @@ home:()=>`<section class="hero"><div class="wrap"><div><h1>De specialist in sta-
 <div class="stats"><div><b>35+</b><span>jaar ervaring</span></div><div><b>1 jaar</b><span>garantie op occasions</span></div><div><b>Op maat</b><span>advies & thuisbezoek</span></div></div></div>
 <div class="sl" role="region" aria-roledescription="carrousel" aria-label="Onze producten in een gezellig interieur"><div class="sl-track">${slides.map((s,i)=>{const p=bySlug[s.slug]||{};return `<a class="sl-slide${i?'':' on'}" href="#/product/${s.slug}" aria-label="${p.name||''}" ${i?'tabindex="-1"':''}><img src="${i<2?s.img:'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}" data-src="${s.img}" alt="${p.name||''} in een gezellig interieur"><span class="sl-cap"><em>${names[p.cat]||''}</em><b>${p.name||''}</b><small>${p.price?'Vanaf '+eur(p.price.toFixed(2)):'Prijs op aanvraag'} · Bekijk <i>→</i></small></span></a>`}).join('')}</div>
 <button class="sl-nav sl-prev" aria-label="Vorige foto"></button><button class="sl-nav sl-next" aria-label="Volgende foto"></button>
-<div class="sl-dots">${slides.map((s,i)=>`<button class="${i?'':'on'}" aria-label="Foto ${i+1}"></button>`).join('')}</div><div class="sl-bar"><i></i></div></div></div></section>
+<div class="sl-dots">${slides.map((s,i)=>`<button class="${i?'':'on'}" aria-label="Foto ${i+1}"></button>`).join('')}</div><div class="sl-bar"><i></i></div></div></div>
+<svg class="hero-art" viewBox="0 0 1440 560" preserveAspectRatio="none" aria-hidden="true">
+ <defs>
+  <linearGradient id="hrib1" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fff" stop-opacity="0"/><stop offset="45%" stop-color="#a7f3bd" stop-opacity=".14"/><stop offset="100%" stop-color="#fff" stop-opacity=".04"/></linearGradient>
+  <linearGradient id="hrib2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffc247" stop-opacity="0"/><stop offset="50%" stop-color="#ffc247" stop-opacity=".28"/><stop offset="100%" stop-color="#34c759" stop-opacity="0"/></linearGradient>
+ </defs>
+ <path d="M-120,460 C260,380 520,120 960,180 C1220,215 1360,90 1560,40 L1560,560 L-120,560 Z" fill="url(#hrib1)"/>
+ <path d="M-80,500 C320,390 640,150 1080,230 C1280,266 1410,170 1540,110" fill="none" stroke="url(#hrib2)" stroke-width="3.5"/>
+ <path d="M120,560 C480,430 790,240 1220,290 C1360,306 1450,250 1540,200" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+</svg>
+<svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+ <defs>
+  <linearGradient id="goldSw" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f59e0b" stop-opacity="0"/><stop offset="28%" stop-color="#ffc247" stop-opacity=".85"/><stop offset="68%" stop-color="#f59e0b" stop-opacity=".65"/><stop offset="100%" stop-color="#ffc247" stop-opacity="0"/></linearGradient>
+ </defs>
+ <path d="M0,36 C340,124 780,-24 1440,52 L1440,120 L0,120 Z" fill="rgba(255,255,255,.11)"/>
+ <path d="M0,66 C380,136 860,-4 1440,70 L1440,79 C860,10 380,146 0,74 Z" fill="url(#goldSw)"/>
+ <path class="wave-bg" d="M0,73 C380,143 860,8 1440,78 L1440,122 L0,122 Z"/>
+</svg></section>
 <section><div class="wrap"><h2 class="t">Onze productgroepen</h2><p class="sub">Alles voor zit-, lig- en zorgcomfort onder één dak.</p><div class="grid g3">
 ${Object.entries(groups).map(([k,g])=>`<a class="card reveal" href="#/cat/${k}"><div class="ico">${g.i}</div><h3>${g.t}</h3><p>${g.d}</p></a>`).join('')}</div></div></section>
 <section class="alt"><div class="wrap split"><div class="reveal"><h2 class="t">Sta op stoel op maat</h2><p class="prose">Net zoals bij schoenen of een maatkostuum passen wij een stoel helemaal aan op uw persoonlijke maten en wensen. Kom ons <a href="#/cat/zitcomfort_sta-op-stoelen">ruime assortiment</a> bekijken en proberen, of laat ons u thuis bezoeken.</p><a class="btn" href="#/informatie">Meer informatie</a></div>
@@ -68,7 +85,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.0.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.1.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};
