@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visitekaartje Geertjan Klein Haneveld – Schipper Compact Wonen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon-modern.svg">
+<style>
+:root{--bg:#f2f8f3;--fg:#12261a;--mut:#5a6e60;--pri:#1f9d3f;--pri2:#12702f;--acc:#f59e0b;--bd:#dfeae1}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;background:radial-gradient(ellipse 75% 70% at 80% 15%,rgba(52,199,89,.12),transparent 65%),radial-gradient(circle at 15% 85%,rgba(245,158,11,.08),transparent 50%),var(--bg);color:var(--fg);min-height:100vh}
+.top{background:#fff;border-bottom:1px solid var(--bd);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);font-family:"Bricolage Grotesque",sans-serif;font-size:21px;font-weight:600}
+.brand img{width:46px;height:48px}
+.brand b{color:var(--pri);font-weight:800}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.btn{background:var(--pri);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14.5px;text-decoration:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.btn:hover{background:var(--pri2);transform:translateY(-1px)}
+.btn.ghost{background:#fff;color:var(--pri);border:1.5px solid var(--pri)}
+.wrap{max-width:1180px;margin:0 auto;padding:42px 24px 70px}
+.head{text-align:center;max-width:680px;margin:0 auto 38px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;background:linear-gradient(135deg,#fff8e6,#ffe4a3);color:#4a2c00;border:1px solid rgba(245,158,11,.45);border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+h1{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(28px,4vw,42px);margin:10px 0 8px;letter-spacing:-.02em}
+.head p{color:var(--mut);margin:0;font-size:17px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.c-wrap{display:flex;flex-direction:column;gap:12px}
+.c-lbl{display:flex;align-items:center;justify-content:space-between;font-size:13.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;padding:0 4px}
+.c-lbl span{color:var(--pri2);background:#e6f4ea;padding:3px 10px;border-radius:999px;font-size:12px}
+.bcard{width:100%;aspect-ratio:85/55;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(12,42,22,.18),0 0 0 1px rgba(31,157,63,.16);background:#fff;transition:transform .35s ease,box-shadow .35s ease}
+.bcard:hover{transform:translateY(-6px);box-shadow:0 32px 72px rgba(12,42,22,.24),0 0 0 2px rgba(31,157,63,.32)}
+.bcard img{width:100%;height:100%;display:block}
+.specs{margin-top:42px;background:#fff;border:1px solid var(--bd);border-radius:18px;padding:24px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;box-shadow:0 10px 30px rgba(12,42,22,.06)}
+.spec b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);margin-bottom:3px}
+.spec span{font-weight:700;font-size:15.5px;color:var(--fg)}
+@media(max-width:920px){.cards{grid-template-columns:1fr}}
+@media print{
+ body{background:#fff}
+ .top,.head,.c-lbl,.specs{display:none!important}
+ .wrap{padding:0;margin:0;max-width:none}
+ .cards{display:flex;flex-direction:column;gap:12mm;align-items:center;padding-top:15mm}
+ .bcard{width:85mm;height:55mm;border-radius:0;box-shadow:none;border:.2mm dashed #999;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header class="top">
+ <a class="brand" href="./"><img src="logo-modern.svg" alt=""><span><b>Schipper</b> Compact Wonen</span></a>
+ <div class="acts">
+  <a class="btn ghost" href="assets/visitekaartje-voorzijde.svg" download="Schipper-Visitekaartje-Geertjan-Voorzijde.svg">Download Voorzijde (SVG)</a>
+  <a class="btn ghost" href="assets/visitekaartje-achterzijde.svg" download="Schipper-Visitekaartje-Geertjan-Achterzijde.svg">Download Achterzijde (SVG)</a>
+  <button type="button" class="btn" onclick="window.print()">Afdrukken op ware grootte (85 × 55 mm)</button>
+ </div>
+</header>
+<main class="wrap">
+ <div class="head">
+  <span class="tag">Huisstijl Drukwerk · 85 × 55 mm</span>
+  <h1>Visitekaartje Geertjan Klein Haneveld</h1>
+  <p>Dubbelzijdig visitekaartje in de nieuwe huisstijl met het 3D sta-op fauteuil logo op de voorzijde en een praktische afspraak- &amp; adviesnotitie op de achterzijde.</p>
+ </div>
+ <div class="cards">
+  <div class="c-wrap">
+   <div class="c-lbl"><b>Voorzijde · Persoonlijk &amp; Contact</b><span>85 × 55 mm</span></div>
+   <div class="bcard"><img src="assets/visitekaartje-voorzijde.svg" alt="Visitekaartje voorzijde Geertjan Klein Haneveld – Schipper Compact Wonen"></div>
+  </div>
+  <div class="c-wrap">
+   <div class="c-lbl"><b>Achterzijde · Showroom &amp; Afspraaknotitie</b><span>85 × 55 mm</span></div>
+   <div class="bcard"><img src="assets/visitekaartje-achterzijde.svg" alt="Visitekaartje achterzijde met afspraaknotitie – Schipper Compact Wonen"></div>
+  </div>
+ </div>
+ <div class="specs">
+  <div class="spec"><b>Formaat</b><span>85 × 55 mm (Standaard EU)</span></div>
+  <div class="spec"><b>Persoon &amp; Rol</b><span>Geertjan Klein Haneveld · Bewegingstechnoloog</span></div>
+  <div class="spec"><b>Kleuren</b><span>Schipper Groen (#1F9D3F / #073D19) &amp; Goud (#F59E0B)</span></div>
+  <div class="spec"><b>Bestandsformaat</b><span>100% Vector SVG (Drukwerkklaar)</span></div>
+ </div>
+</main>
+</body>
+</html>

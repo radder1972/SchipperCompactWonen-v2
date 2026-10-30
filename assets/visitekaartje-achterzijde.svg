@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 550" width="850" height="550">
+<defs>
+ <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap');
+  .f-head { font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif; }
+  .f-body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+ </style>
+ <linearGradient id="leftG" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#073d19"/>
+  <stop offset="55%" stop-color="#0f6329"/>
+  <stop offset="100%" stop-color="#1f9d3f"/>
+ </linearGradient>
+ <linearGradient id="rightBg" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#ffffff"/>
+  <stop offset="100%" stop-color="#f3faf5"/>
+ </linearGradient>
+ <linearGradient id="goldSw" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#ffc247"/>
+  <stop offset="55%" stop-color="#f59e0b"/>
+  <stop offset="100%" stop-color="#34c759"/>
+ </linearGradient>
+ <linearGradient id="topBar" x1="0%" y1="0%" x2="100%" y2="0%">
+  <stop offset="0%" stop-color="#1f9d3f"/>
+  <stop offset="60%" stop-color="#34c759"/>
+  <stop offset="100%" stop-color="#f59e0b"/>
+ </linearGradient>
+ <!-- Chair logo gradients -->
+ <linearGradient id="lb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+ <linearGradient id="la" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#48cc68"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
+ <linearGradient id="la2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0d5aaa"/><stop offset="1" stop-color="#3cbf5c"/></linearGradient>
+ <linearGradient id="ls" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#88ec9f"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
+ <linearGradient id="lf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#157a36"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+ <linearGradient id="lsw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#e58a00"/><stop offset=".55" stop-color="#f59e0b"/><stop offset="1" stop-color="#ffd25a"/></linearGradient>
+ <radialGradient id="lsh"><stop offset="0" stop-color="#000" stop-opacity=".4"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+ <clipPath id="lc"><path d="M68 38C68 18 88 10 120 10s52 8 52 28l6 116H62z"/></clipPath>
+ <clipPath id="cardClip"><rect width="850" height="550" rx="24"/></clipPath>
+</defs>
+
+<g clip-path="url(#cardClip)">
+ <!-- Right appointment surface -->
+ <rect width="850" height="550" fill="url(#rightBg)"/>
+
+ <!-- Left deep-green brand panel with vertical curved swoosh divider -->
+ <path d="M0,0 L355,0 C310,180 395,370 340,550 L0,550 Z" fill="url(#leftG)"/>
+ <path d="M353,0 C308,180 393,370 338,550 L347,550 C402,370 317,180 362,0 Z" fill="url(#goldSw)"/>
+
+ <!-- Large 3D Sta-Op Fauteuil Logo on left panel -->
+ <g transform="translate(86, 48) scale(0.72)">
+  <ellipse cx="120" cy="239" rx="102" ry="9" fill="url(#lsh)"/>
+  <rect x="44" y="218" width="152" height="12" rx="6" fill="#04260e"/>
+  <rect x="58" y="226" width="22" height="9" rx="4" fill="#021708"/>
+  <rect x="160" y="226" width="22" height="9" rx="4" fill="#021708"/>
+  <path d="M52 218L56 184L184 176L188 218Z" fill="url(#lf)"/>
+  <path d="M64 210L176 202M64 198L176 190" stroke="#5fd67a" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+  <g transform="translate(0,-10) rotate(-4.5 120 165)">
+   <path d="M68 38C68 18 88 10 120 10s52 8 52 28l6 116H62z" fill="url(#lb)"/>
+   <g clip-path="url(#lc)" stroke="#fff" stroke-opacity=".34" stroke-width="2.2" fill="none">
+    <path d="M-50 14L50 140M50 14L-50 140"/><path d="M-30 14L70 140M70 14L-30 140"/><path d="M-10 14L90 140M90 14L-10 140"/>
+    <path d="M10 14L110 140M110 14L10 140"/><path d="M30 14L130 140M130 14L30 140"/><path d="M50 14L150 140M150 14L50 140"/>
+    <path d="M70 14L170 140M170 14L70 140"/><path d="M90 14L190 140M190 14L90 140"/><path d="M110 14L210 140M210 14L110 140"/>
+    <path d="M130 14L230 140M230 14L130 140"/><path d="M150 14L250 140M250 14L150 140"/><path d="M170 14L270 140M270 14L170 140"/>
+   </g>
+   <g clip-path="url(#lc)" fill="#fff" fill-opacity=".88">
+    <circle cx="100" cy="62" r="2.8"/><circle cx="140" cy="62" r="2.8"/><circle cx="120" cy="86" r="2.8"/>
+    <circle cx="100" cy="110" r="2.8"/><circle cx="140" cy="110" r="2.8"/><circle cx="120" cy="132" r="2.8"/>
+   </g>
+   <rect x="78" y="18" width="84" height="30" rx="14" fill="url(#ls)" stroke="#0d5a26" stroke-width="2"/>
+   <path d="M88 24h64" stroke="#fff" stroke-opacity=".65" stroke-width="2.5" stroke-linecap="round"/>
+   <rect x="24" y="92" width="44" height="114" rx="18" fill="url(#la)"/>
+   <rect x="172" y="92" width="44" height="114" rx="18" fill="url(#la2)"/>
+   <rect x="28" y="95" width="36" height="14" rx="7" fill="#fff" fill-opacity=".35"/>
+   <rect x="176" y="95" width="36" height="14" rx="7" fill="#fff" fill-opacity=".25"/>
+   <path d="M60 140Q120 124 180 140L188 170H52z" fill="url(#ls)"/>
+   <path d="M58 142Q120 128 182 142" fill="none" stroke="#fff" stroke-opacity=".68" stroke-width="3" stroke-linecap="round"/>
+   <rect x="52" y="164" width="136" height="42" rx="14" fill="url(#lb)"/>
+   <rect x="64" y="171" width="112" height="26" rx="9" fill="url(#lf)" fill-opacity=".45"/>
+   <path d="M29 148h32v38a8 8 0 0 1-8 8H37a8 8 0 0 1-8-8z" fill="#0b4f21" fill-opacity=".55" stroke="#fff" stroke-opacity=".3" stroke-width="1.5"/>
+   <rect x="36" y="132" width="18" height="28" rx="6" fill="#073816" stroke="#fff" stroke-width="1.8"/>
+   <circle cx="45" cy="141" r="2.8" fill="#ffc247"/>
+   <circle cx="45" cy="150" r="2.8" fill="#5fd67a"/>
+  </g>
+  <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="#000" opacity=".2" transform="translate(0 5)"/>
+  <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="url(#lsw)" stroke="#fff" stroke-width="3" stroke-linejoin="round" paint-order="stroke"/>
+ </g>
+
+ <!-- Left panel text & opening hours -->
+ <g transform="translate(172, 265)" text-anchor="middle" fill="#ffffff">
+  <text y="0" class="f-head" font-size="22" font-weight="800" fill="#7ce895">Al 35+ jaar</text>
+  <text y="25" class="f-head" font-size="18" font-weight="700">dé zit- en zorgspecialist</text>
+  <line x1="-70" y1="44" x2="70" y2="44" stroke="#ffffff" stroke-opacity=".22" stroke-width="1.5"/>
+  <text y="68" class="f-body" font-size="12.5" font-weight="700" fill="#ffc247" letter-spacing="0.5">OPENINGSTIJDEN SHOWROOM</text>
+  <text y="90" class="f-body" font-size="14" font-weight="600" fill="#e8f5eb">Di t/m Vr: 10:00 – 16:00 uur</text>
+  <text y="112" class="f-body" font-size="13.5" font-weight="500" fill="#c7e6ce">Ma &amp; Za: Op afspraak</text>
+  <rect x="-102" y="132" width="204" height="30" rx="15" fill="#ffffff" fill-opacity=".13" stroke="#ffffff" stroke-opacity=".25"/>
+  <text y="151" class="f-body" font-size="12.5" font-weight="700" fill="#ffffff">Gratis advies aan huis</text>
+  <text y="194" class="f-body" font-size="11.5" fill="#a8d5b3">KvK 24391284 · Dordrecht</text>
+ </g>
+
+ <!-- Right side: Practical Appointment & Model Note Card -->
+ <g transform="translate(396, 52)">
+  <rect x="0" y="0" width="204" height="26" rx="13" fill="#fff8e6" stroke="#f59e0b" stroke-opacity=".5"/>
+  <circle cx="14" cy="13" r="4" fill="#1f9d3f"/>
+  <text x="24" y="17" class="f-body" font-size="11" font-weight="700" fill="#4a2c00" letter-spacing="0.5">AFSPRAAK &amp; ADVIESNOTITIE</text>
+
+  <text x="0" y="60" class="f-head" font-size="26" font-weight="800" fill="#12261a" letter-spacing="-0.4">Uw persoonlijke afspraak</text>
+  <path d="M2,70 C45,64 95,64 140,68 C95,66 45,66 2,70 Z" fill="url(#topBar)" stroke="url(#topBar)" stroke-width="2"/>
+
+  <!-- Checkboxes: Showroom vs Thuisbezoek -->
+  <g transform="translate(0, 92)" class="f-body" font-size="14" font-weight="600" fill="#12261a">
+   <rect x="0" y="0" width="22" height="22" rx="6" fill="#ffffff" stroke="#1f9d3f" stroke-width="2"/>
+   <text x="30" y="16">Showroom Dordrecht</text>
+
+   <rect x="204" y="0" width="22" height="22" rx="6" fill="#ffffff" stroke="#1f9d3f" stroke-width="2"/>
+   <text x="234" y="16">Bezoek bij u thuis</text>
+  </g>
+
+  <!-- Write-in fields for Geertjan -->
+  <g transform="translate(0, 146)" class="f-body">
+   <text x="0" y="14" font-size="11.5" font-weight="700" fill="#5a6e60" letter-spacing="0.4">DATUM &amp; TIJDSTIP</text>
+   <rect x="0" y="24" width="398" height="44" rx="10" fill="#ffffff" stroke="#cde8d4" stroke-width="1.5"/>
+   <text x="16" y="51" font-size="14" fill="#9fb8a6">Datum: ____ / ____ / 202__     om: ____ : ____ uur</text>
+
+   <text x="0" y="96" font-size="11.5" font-weight="700" fill="#5a6e60" letter-spacing="0.4">BESPROKEN MODEL / MAATVOERING / NOTITIE</text>
+   <rect x="0" y="106" width="398" height="118" rx="10" fill="#ffffff" stroke="#cde8d4" stroke-width="1.5"/>
+   <line x1="16" y1="144" x2="382" y2="144" stroke="#dfeae1" stroke-dasharray="4 4"/>
+   <line x1="16" y1="182" x2="382" y2="182" stroke="#dfeae1" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- Footer note on back -->
+  <g transform="translate(0, 404)" class="f-body" font-size="13" fill="#5a6e60">
+   <text x="0" y="16"><tspan font-weight="700" fill="#1f9d3f">Vragen of verzetten?</tspan> Bel gerust: <tspan font-weight="700" fill="#12261a">078 – 631 4858</tspan></text>
+   <text x="0" y="36" font-size="12">Merwedestraat 239 · 3313 GT Dordrecht · Gratis parkeren voor de deur</text>
+  </g>
+ </g>
+
+ <rect x="0" y="542" width="850" height="8" fill="url(#topBar)"/>
+</g>
+</svg>
