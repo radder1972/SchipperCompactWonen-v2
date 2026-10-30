@@ -10,7 +10,7 @@ const groups={
 const names={'zitcomfort_sta-op-stoelen':'Sta op stoelen','zitcomfort_seniorenstoelen':'Seniorenstoelen','ligcomfort_senioren-ledikanten':'Senioren ledikanten','ligcomfort_hooglaag-bedden':'Hoog/laag bedden','ligcomfort_bed-toebehoren':'Bed toebehoren','zorgcomfort_loophulpmiddelen':'Loophulpmiddelen','zorgcomfort_trapliften':'Trapliften'};
 const eur=p=>'€ '+Number(p.replace(/,/g,'')).toLocaleString('nl-NL',{minimumFractionDigits:2});
 const pSw=`<svg class="prod-sw" viewBox="0 0 320 20" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="pswG" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1f9d3f" stop-opacity=".18"/><stop offset="55%" stop-color="#34c759" stop-opacity=".45"/><stop offset="100%" stop-color="#f59e0b" stop-opacity=".55"/></linearGradient></defs><path class="psw-fill" d="M0,20 L0,11 C95,22 215,-1 320,11 L320,20 Z"/><path d="M0,11 C95,22 215,-1 320,11" fill="none" stroke="url(#pswG)" stroke-width="2.2"/></svg>`;
-const prod=p=>`<article class="card prod reveal" tabindex="0" data-s="${p.slug}">${p.old?'<span class="badge">Aanbieding</span>':''}${p.condition&&p.condition!=='nieuw'?`<span class="tag rev"><img class="ti3d" src="icons/gereviseerd.svg" alt=""><span>${p.condition}</span></span>`:''}<div class="im"><img loading="lazy" src="${p.img}" alt="${p.name}"></div><div class="b">${pSw}<h3>${p.name}</h3><div class="pfoot">${p.price?`<div class="price">${p.old?`<s>${eur(p.old)}</s>`:''}${eur(p.price)}</div>`:'<div class="ask">Prijs op aanvraag</div>'}<span class="p-go" aria-hidden="true">${icons.arrow}</span></div></div></article>`;
+const prod=p=>{const tg=`${p.old?'<span class="tag sale"><img class="ti3d" src="icons/aanbieding.svg" alt=""><span>Aanbieding</span></span>':''}${p.condition&&p.condition!=='nieuw'?`<span class="tag rev"><img class="ti3d" src="icons/gereviseerd.svg" alt=""><span>${p.condition}</span></span>`:''}`;return `<article class="card prod reveal" tabindex="0" data-s="${p.slug}">${tg?`<div class="p-tags">${tg}</div>`:''}<div class="im"><img loading="lazy" src="${p.img}" alt="${p.name}"></div><div class="b">${pSw}<h3>${p.name}</h3><div class="pfoot">${p.price?`<div class="price">${p.old?`<s>${eur(p.old)}</s>`:''}${eur(p.price)}</div>`:'<div class="ask">Prijs op aanvraag</div>'}<span class="p-go" aria-hidden="true">${icons.arrow}</span></div></div></article>`;};
 const swDefs=`<defs><linearGradient id="secSw" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1f9d3f" stop-opacity="0"/><stop offset="28%" stop-color="#1f9d3f" stop-opacity=".32"/><stop offset="68%" stop-color="#f59e0b" stop-opacity=".5"/><stop offset="100%" stop-color="#1f9d3f" stop-opacity="0"/></linearGradient></defs>`;
 const swTop=`<svg class="sec-wave top" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">${swDefs}<path class="wave-bg" d="M0,0 L1440,0 L1440,22 C980,68 460,-14 0,42 Z"/><path d="M0,42 C460,-14 980,68 1440,22 L1440,30 C980,76 460,-6 0,49 Z" fill="url(#secSw)"/></svg>`;
 const swBot=`<svg class="sec-wave bot" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true">${swDefs}<path d="M0,26 C480,74 960,-12 1440,36 L1440,64 L0,64 Z" fill="rgba(31,157,63,.06)"/><path d="M0,34 C480,78 960,-6 1440,42 L1440,48 C960,2 480,84 0,40 Z" fill="url(#secSw)"/><path class="wave-bg" d="M0,39 C480,83 960,0 1440,46 L1440,65 L0,65 Z"/></svg>`;
@@ -61,8 +61,8 @@ const showroomSec=`<section id="showroom"><div class="wrap"><div class="sr-spot 
    <li>Persoonlijk meetadvies van bewegingstechnoloog Geertjan</li>
   </ul>
   <div class="acts" style="margin-top:18px">
-   <button type="button" class="btn" data-open-showroom="1">Bekijk showroom &amp; foto's</button>
-   <a class="btn ghost" href="#/afspraak">Plan adviesgesprek</a>
+   <a class="btn" href="#/afspraak">Plan adviesgesprek</a>
+   <a class="btn ghost" href="#/contact">Route &amp; openingstijden</a>
   </div>
  </div>
 </div></div></section>`;
@@ -102,7 +102,7 @@ const werkwijzeSec=`<section id="werkwijze"><div class="wrap"><h2 class="t">Al r
 const views={
 home:()=>`<section class="hero"><div class="wrap"><div><h1>De specialist in sta-op stoelen en zorghulpmiddelen</h1>
 <p>Al ruim 35 jaar leveren wij aan zorgverzekeraars, zorginstellingen en particulieren. Persoonlijk advies van een ervaren bewegingstechnoloog — bij u thuis of in onze showroom in Dordrecht.</p>
-<a class="btn" href="#/afspraak">Afspraak maken</a><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk assortiment</a><button type="button" class="btn ghost" data-open-showroom="1">Bekijk showroom</button>
+<a class="btn" href="#/afspraak">Afspraak maken</a><a class="btn ghost" href="#/cat/zitcomfort_sta-op-stoelen">Bekijk assortiment</a>
 <div class="stats"><div><b>35+</b><span>jaar ervaring</span></div><div><b>1 jaar</b><span>garantie op occasions</span></div><div><b>Op maat</b><span>advies & thuisbezoek</span></div></div></div>
 <div class="sl" role="region" aria-roledescription="carrousel" aria-label="Onze producten in een gezellig interieur"><div class="sl-track">${slides.map((s,i)=>{const p=bySlug[s.slug]||{};return `<a class="sl-slide${i?'':' on'}" href="#/product/${s.slug}" aria-label="${p.name||''}" ${i?'tabindex="-1"':''}><img src="${i<2?s.img:'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}" data-src="${s.img}" alt="${p.name||''} in een gezellig interieur"><span class="sl-cap"><em>${names[p.cat]||''}</em><b>${p.name||''}</b><small>${p.price?'Vanaf '+eur(p.price.toFixed(2)):'Prijs op aanvraag'} · Bekijk <i class="tic">${icons.arrow}</i></small></span></a>`}).join('')}</div>
 <button class="sl-nav sl-prev" aria-label="Vorige foto"></button><button class="sl-nav sl-next" aria-label="Volgende foto"></button>
@@ -143,7 +143,7 @@ informatie:()=>`<div class="page"><div class="wrap"><div class="crumbs"><a href=
   <p>Iedereen wil oud worden maar niemand wil het zijn. Met ouder worden komen de nodige gebreken. Onze passie is om met ergonomisch aangemeten producten deze gebreken te ontkrachten en u zo lang mogelijk zelfstandig en comfortabel thuis te laten wonen.</p>
   <p>Wij zijn geen webwinkel: u bent van harte welkom in onze showroom aan de Merwedestraat 239 in Dordrecht. U wordt niet geholpen door een ‘snelle verkoper’, maar door ervaren bewegingstechnoloog <b>Geertjan Klein Haneveld</b>.</p>
   <p>Goed zitten is een vaak onderschatte factor die bijdraagt aan uw gezondheid. Wij ontvangen u graag met verse koffie in Dordrecht of bezoeken u kosteloos thuis als dat makkelijker is.</p>
-  <div class="acts" style="margin-top:20px"><a class="btn" href="#/afspraak">Plan een adviesafspraak</a><button type="button" class="btn ghost" data-open-showroom="1"><i class="tic">${icons.store}</i>Bekijk onze showroom</button><a class="btn ghost" href="nieuwe-zaak.html">De Nieuwe Zaak (Storyboard) <i class="tic">${icons.ext}</i></a></div>
+  <div class="acts" style="margin-top:20px"><a class="btn" href="#/afspraak">Plan een adviesafspraak</a><a class="btn ghost" href="nieuwe-zaak.html">De Nieuwe Zaak (Storyboard) <i class="tic">${icons.ext}</i></a></div>
  </div>
  <div class="gj-photo">
   <img src="assets/geert_in_de_winkel_welkom.jpg" alt="Geertjan Klein Haneveld heet u welkom in de showroom van Schipper Compact Wonen in Dordrecht" loading="lazy">
@@ -179,24 +179,29 @@ cat:k=>{
  const items=isAll?all:g?g.subs.flatMap(s=>products[s].map(p=>({...p,cat:s}))):(products[k]||[]).map(p=>({...p,cat:k}));
  if(!isAll&&!g&&!products[k])return views.nf();
  const gk=!isAll&&!g?k.split('_')[0]:k;
+ const grp=g||(!isAll&&groups[gk]);
  const title=isAll?'Complete Collectie':g?g.t:names[k];
  const desc=isAll?`Ontdek onze actuele collectie van ${all.length} modellen verdeeld over zitcomfort, ligcomfort en zorgcomfort — vrijblijvend uit te proberen in onze showroom in Dordrecht of bij u thuis.`:g?g.d:'Neem gerust contact op voor persoonlijk maatwerkadvies en actuele uitvoeringen.';
  const brands=[...new Set(items.map(x=>all.find(a=>a.slug===x.slug)?.brand).filter(Boolean))].sort();
  return `<div class="page"><div class="wrap">
   <div class="crumbs"><a href="#/">Home</a>${!isAll&&!g?` / <a href="#/cat/${gk}">${groups[gk].t}</a>`:''} / ${title}</div>
   <h1>${title}</h1><p class="sub">${desc}</p>
-  <div class="cat-tabs">
-   <a class="ctab${isAll?' on':''}" href="#/cat/all">Alle producten <span>${all.length}</span></a>
-   ${Object.entries(groups).map(([gk2,gr])=>{const cnt=gr.subs.reduce((n,s)=>n+products[s].length,0);return `<a class="ctab${k===gk2||(!isAll&&!g&&gk===gk2)?' on':''}" href="#/cat/${gk2}">${gr.t} <span>${cnt}</span></a>`}).join('')}
+  <div class="fpanel card">
+   <div class="fp-top">
+    <div class="cat-tabs">
+     <a class="ctab${isAll?' on':''}" href="#/cat/all">Alle producten <span>${all.length}</span></a>
+     ${Object.entries(groups).map(([gk2,gr])=>{const cnt=gr.subs.reduce((n,s)=>n+products[s].length,0);return `<a class="ctab${k===gk2||(!isAll&&!g&&gk===gk2)?' on':''}" href="#/cat/${gk2}">${gr.t} <span>${cnt}</span></a>`}).join('')}
+    </div>
+    <span class="fp-count" id="f-count">${items.length} modellen getoond</span>
+   </div>
+   ${grp?`<div class="sub-pills"><span class="fp-sublbl">Subcategorie:</span><a class="spill${g?' on':''}" href="#/cat/${gk}">Alles in ${grp.t} <b>${grp.subs.reduce((n,s)=>n+products[s].length,0)}</b></a>${grp.subs.map(s=>`<a class="spill${k===s?' on':''}" href="#/cat/${s}">${names[s]} <b>${products[s].length}</b></a>`).join('')}</div>`:''}
+   <div class="fbar">
+    <label class="f-field f-search"><span>Zoeken</span><div class="f-in"><i class="tic">${icons.search}</i><input id="q" type="search" placeholder="Model, merk of trefwoord…"></div></label>
+    <label class="f-field"><span>Conditie</span><select id="f-cond" aria-label="Filter op conditie"><option value="">Alle (Nieuw &amp; Occasion)</option><option value="nieuw">Nieuw op maat</option><option value="occasion">Occasion / Gereviseerd</option></select></label>
+    ${brands.length?`<label class="f-field"><span>Merk</span><select id="f-brand" aria-label="Filter op merk"><option value="">Alle merken (${brands.length})</option>${brands.map(b=>`<option value="${b}">${b}</option>`).join('')}</select></label>`:''}
+    <label class="f-field"><span>Sortering</span><select id="f-sort" aria-label="Sorteer op"><option value="default">Aanbevolen</option><option value="price-asc">Prijs: laag → hoog</option><option value="price-desc">Prijs: hoog → laag</option><option value="name">Naam: A → Z</option></select></label>
+   </div>
   </div>
-  ${g?`<div class="sub-pills">${g.subs.map(s=>`<a class="spill" href="#/cat/${s}">${names[s]} (${products[s].length})</a>`).join('')}</div>`:''}
-  <div class="fbar card">
-   <input id="q" type="search" placeholder="Zoek op model, merk of trefwoord…">
-   <select id="f-cond" aria-label="Filter op conditie"><option value="">Alle condities (Nieuw &amp; Occasion)</option><option value="nieuw">Nieuw op maat</option><option value="occasion">Occasion / Jong gebruikt</option></select>
-   ${brands.length?`<select id="f-brand" aria-label="Filter op merk"><option value="">Alle merken (${brands.length})</option>${brands.map(b=>`<option value="${b}">${b}</option>`).join('')}</select>`:''}
-   <select id="f-sort" aria-label="Sorteer op"><option value="default">Sortering: Aanbevolen</option><option value="price-asc">Prijs: laag → hoog</option><option value="price-desc">Prijs: hoog → laag</option><option value="name">Naam: A → Z</option></select>
-  </div>
-  <p class="ask" id="f-count" style="margin:14px 0">${items.length} modellen getoond</p>
   <div class="grid g4" id="pl">${items.map(p=>prod({name:p.name,slug:p.slug,img:p.img||(p.images&&p.images[0])||'',price:p.price?(typeof p.price==='number'?p.price.toFixed(2):p.price):'',old:p.old?(typeof p.old==='number'?p.old.toFixed(2):p.old):'',condition:p.condition})).join('')}</div>
  </div></div>${cta}`},
 product:s=>{const p=bySlug[s];if(!p)return views.nf();const g=Object.keys(groups).find(k=>p.cat.startsWith(k));
@@ -204,7 +209,7 @@ product:s=>{const p=bySlug[s];if(!p)return views.nf();const g=Object.keys(groups
  const sp=Object.entries(p.specs||{});
  return `<div class="page"><div class="wrap"><div class="crumbs"><a href="#/">Home</a> / <a href="#/cat/${g}">${groups[g].t}</a> / <a href="#/cat/${p.cat}">${names[p.cat]}</a> / ${p.name}</div>
  <div class="pd"><div class="gal">${p.images.length?`<div class="main"><img id="mainimg" src="${p.images[0]}" alt="${p.name}"></div><div class="thumbs">${p.images.slice(0,8).map(i=>`<img loading="lazy" src="${i}" alt="">`).join('')}</div>`:'<div class="main"><div class="ask">Foto op aanvraag</div></div>'}</div>
- <div class="info">${p.condition==='nieuw'?'<span class="tag lg">Nieuw</span>':`<span class="tag lg rev"><img class="ti3d" src="icons/gereviseerd.svg" alt=""><span>${p.condition}</span></span>`}${p.brand?` <span class="tag lg alt">${p.brand}</span>`:''}<h1>${p.name}</h1>
+ <div class="info"><div class="pd-tags">${p.old?'<span class="tag lg sale"><img class="ti3d" src="icons/aanbieding.svg" alt=""><span>Aanbieding</span></span>':''}${p.condition==='nieuw'?'<span class="tag lg new"><img class="ti3d" src="icons/nieuw.svg" alt=""><span>Nieuw</span></span>':`<span class="tag lg rev"><img class="ti3d" src="icons/gereviseerd.svg" alt=""><span>${p.condition}</span></span>`}${p.brand?`<span class="tag lg alt">${p.brand}</span>`:''}</div><h1>${p.name}</h1>
  ${p.price?`<div class="price big">${p.old?`<s>${eur(p.old.toFixed(2))}</s>`:''}${eur(p.price.toFixed(2))}</div><small class="ask">Prijs kan per uitvoering en bekleding verschillen</small>`:'<div class="ask big">Prijs op aanvraag</div>'}
  ${p.short?`<div class="prose short">${p.short}</div>`:''}
  ${p.features&&p.features.length?`<ul class="feat">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>`:''}
@@ -254,7 +259,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.3.2 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.3.3 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};

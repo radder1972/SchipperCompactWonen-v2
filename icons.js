@@ -22,6 +22,7 @@ export const icons={
  camera:s('<rect x="3" y="6.5" width="18" height="13" rx="2.5" fill="rgba(95,214,122,.18)" stroke="#5fd67a"/><path d="M8.5 6.5l1.4-2.2h4.2l1.4 2.2" stroke="#5fd67a"/><circle cx="12" cy="13" r="3.2" stroke="#ffc247" stroke-width="2.2"/>'),
  route:s('<path d="M19.5 4.5l-15 6.3 6.2 2.3 2.3 6.2z" fill="rgba(31,157,63,.14)" stroke="currentColor"/><path d="M10.7 13.1l4.3-4.3" stroke="#f59e0b" stroke-width="2.2"/>'),
  check2:s('<circle cx="12" cy="12" r="9" fill="rgba(31,157,63,.16)" stroke="#1f9d3f"/><path d="M8.2 12.3l2.5 2.5 5.2-5.4" stroke="#f59e0b" stroke-width="2.4"/>'),
+ search:s('<circle cx="11" cy="11" r="6.5" fill="rgba(31,157,63,.14)" stroke="#1f9d3f" stroke-width="2.1"/><path d="M16 16l4.5 4.5" stroke="#f59e0b" stroke-width="2.4"/>'),
  arrow:s('<path d="M5 12h14m0 0l-5-5m5 5l-5 5" stroke="currentColor" stroke-width="2.2"/>'),
  ext:s('<path d="M7 17L17 7m0 0H9m8 0v8" stroke="currentColor" stroke-width="2.2"/>'),
  star:s('<path d="M12 2.8l2.8 5.7 6.3.9-4.55 4.45 1.07 6.25L12 17.15 6.38 20.1l1.07-6.25L2.9 9.4l6.3-.9z" fill="#f59e0b" stroke="#f59e0b"/>')

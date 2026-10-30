@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250"><defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<linearGradient id="o" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe082"/><stop offset=".5" stop-color="#f59e0b"/><stop offset="1" stop-color="#c97300"/></linearGradient>
+<linearGradient id="of" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b86500"/><stop offset="1" stop-color="#7a4100"/></linearGradient>
+<linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff3d1"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="120" cy="238" rx="92" ry="10" fill="url(#sh)"/>
+<!-- 3D golden price tag body -->
+<path d="M36 48h82c8 0 16 3 22 9l64 64c12 12 12 31 0 43l-59 59c-12 12-31 12-43 0L38 159c-6-6-9-14-9-22V55c0-4 3-7 7-7z" fill="url(#of)" transform="translate(0,10)"/>
+<path d="M36 48h82c8 0 16 3 22 9l64 64c12 12 12 31 0 43l-59 59c-12 12-31 12-43 0L38 159c-6-6-9-14-9-22V55c0-4 3-7 7-7z" fill="url(#o)"/>
+<path d="M46 58h68c6 0 12 2 16 6l52 52" fill="none" stroke="#fff" stroke-opacity=".48" stroke-width="6" stroke-linecap="round"/>
+<!-- Tag hole with 3D green ring -->
+<circle cx="72" cy="84" r="20" fill="url(#f)"/>
+<circle cx="72" cy="80" r="20" fill="url(#b)"/>
+<circle cx="72" cy="80" r="9" fill="#fff"/>
+<!-- 3D percent symbol -->
+<g stroke="url(#p)" stroke-width="15" stroke-linecap="round">
+ <line x1="96" y1="166" x2="154" y2="108"/>
+</g>
+<circle cx="102" cy="116" r="14" fill="url(#p)"/>
+<circle cx="148" cy="158" r="14" fill="url(#p)"/>
+<!-- 3D green star badge in corner -->
+<circle cx="182" cy="68" r="36" fill="url(#f)"/>
+<circle cx="182" cy="61" r="36" fill="url(#b)"/>
+<path d="M182 39l6 14 15 2-11 10 3 15-13-7-13 7 3-15-11-10 15-2z" fill="url(#p)"/>
+</svg>
