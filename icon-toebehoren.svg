@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250"><defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe497"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
+<linearGradient id="t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3cbf5c"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<linearGradient id="o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc247"/><stop offset="1" stop-color="#e58a00"/></linearGradient>
+<linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#dcf5e2"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="120" cy="238" rx="105" ry="9" fill="url(#sh)"/><!-- mattress stack -->
+<rect x="24" y="150" width="192" height="40" rx="16" fill="url(#f)" transform="translate(0 8)"/><rect x="24" y="150" width="192" height="40" rx="16" fill="url(#t)"/>
+<rect x="24" y="122" width="192" height="40" rx="16" fill="url(#b)"/><rect x="34" y="126" width="172" height="8" rx="4" fill="#fff" fill-opacity=".4"/>
+<rect x="32" y="92" width="176" height="36" rx="16" fill="url(#p)"/>
+<g stroke="#1f9d3f" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"><path d="M56 104h128M56 116h128"/></g>
+<!-- pillow -->
+<rect x="50" y="56" width="72" height="40" rx="18" fill="#fff"/><rect x="50" y="56" width="72" height="40" rx="18" fill="url(#v)" opacity=".28"/><path d="M62 68q36-10 50 0" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none"/>
+<!-- remote -->
+<rect x="150" y="30" width="42" height="84" rx="16" fill="url(#f)" transform="translate(0 6) rotate(10 171 72)"/>
+<g transform="rotate(10 171 72)"><rect x="150" y="30" width="42" height="84" rx="16" fill="url(#o)"/><circle cx="171" cy="54" r="9" fill="#fff"/><path d="M165 56l6-8 6 8" fill="none" stroke="#e58a00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="171" cy="82" r="9" fill="#fff"/><path d="M165 80l6 8 6-8" fill="none" stroke="#e58a00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></svg>

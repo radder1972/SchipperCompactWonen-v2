@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250"><defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe497"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<linearGradient id="o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc247"/><stop offset="1" stop-color="#e58a00"/></linearGradient>
+<linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#dcf5e2"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="120" cy="238" rx="90" ry="9" fill="url(#sh)"/><path d="M120 20l86 30v62c0 54-38 92-86 116-48-24-86-62-86-116V50z" fill="url(#f)" transform="translate(0 8)"/><path d="M120 20l86 30v62c0 54-38 92-86 116-48-24-86-62-86-116V50z" fill="url(#b)"/>
+<path d="M120 36l70 24v52c0 44-30 76-70 96z" fill="#fff" fill-opacity=".12"/>
+<path d="M82 124l28 28 52-58" fill="none" stroke="url(#o)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg>

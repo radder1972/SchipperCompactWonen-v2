@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250"><defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe497"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
+<linearGradient id="t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3cbf5c"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="120" cy="238" rx="100" ry="9" fill="url(#sh)"/>
+<g stroke-linecap="round" fill="none">
+<path d="M168 62L176 206" stroke="url(#t)" stroke-width="13"/>
+<path d="M76 118L66 206" stroke="url(#t)" stroke-width="13"/>
+<path d="M70 168L172 168" stroke="url(#t)" stroke-width="9" opacity=".9"/>
+<path d="M150 62h46" stroke="#f59e0b" stroke-width="16"/>
+<path d="M150 62h46" stroke="#fff" stroke-opacity=".35" stroke-width="4" transform="translate(0 -4)"/>
+<path d="M190 64v22" stroke="#f59e0b" stroke-width="5"/>
+</g>
+<!-- basket -->
+<path d="M82 140h72l-6 44H90z" fill="url(#v)"/><path d="M82 140h72" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#fff" stroke-opacity=".35" stroke-width="2"><path d="M96 142l4 40M112 142v40M128 142v40M144 142l-4 40"/></g>
+<!-- seat -->
+<rect x="60" y="108" width="122" height="30" rx="14" fill="url(#b)"/><rect x="66" y="111" width="108" height="9" rx="4.5" fill="#fff" fill-opacity=".4"/>
+<circle cx="66" cy="214" r="24" fill="url(#f)"/><circle cx="66" cy="214" r="13.200000000000001" fill="#5fd67a"/><circle cx="66" cy="214" r="4.800000000000001" fill="#063b17"/><circle cx="176" cy="214" r="24" fill="url(#f)"/><circle cx="176" cy="214" r="13.200000000000001" fill="#5fd67a"/><circle cx="176" cy="214" r="4.800000000000001" fill="#063b17"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250">
+<defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3cbf5c"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
+<linearGradient id="a2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0d5aaa"/><stop offset="1" stop-color="#3cbf5c"/></linearGradient>
+<linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe497"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<clipPath id="c"><path d="M72 40C72 22 90 14 120 14s48 8 48 26l6 118H66z"/></clipPath>
+</defs>
+<ellipse cx="120" cy="238" rx="100" ry="9" fill="url(#sh)"/>
+<!-- base & lift mechanism -->
+<rect x="58" y="204" width="124" height="14" rx="6" fill="url(#f)"/>
+<rect x="76" y="218" width="16" height="16" rx="5" fill="#063b17"/><rect x="148" y="218" width="16" height="16" rx="5" fill="#063b17"/>
+<path d="M92 190h56v16H92z" fill="url(#f)"/>
+<!-- back -->
+<path d="M72 40C72 22 90 14 120 14s48 8 48 26l6 118H66z" fill="url(#b)"/>
+<g clip-path="url(#c)" stroke="#fff" stroke-opacity=".35" stroke-width="2.2" fill="none"><path d="M-50 14L50 140M50 14L-50 140"/><path d="M-30 14L70 140M70 14L-30 140"/><path d="M-10 14L90 140M90 14L-10 140"/><path d="M10 14L110 140M110 14L10 140"/><path d="M30 14L130 140M130 14L30 140"/><path d="M50 14L150 140M150 14L50 140"/><path d="M70 14L170 140M170 14L70 140"/><path d="M90 14L190 140M190 14L90 140"/><path d="M110 14L210 140M210 14L110 140"/><path d="M130 14L230 140M230 14L130 140"/><path d="M150 14L250 140M250 14L150 140"/><path d="M170 14L270 140M270 14L170 140"/><path d="M190 14L290 140M290 14L190 140"/></g>
+<g clip-path="url(#c)" fill="#fff" fill-opacity=".85"><circle cx="120" cy="34" r="2.8"/><circle cx="100" cy="58" r="2.8"/><circle cx="140" cy="58" r="2.8"/><circle cx="120" cy="82" r="2.8"/><circle cx="100" cy="106" r="2.8"/><circle cx="140" cy="106" r="2.8"/><circle cx="120" cy="130" r="2.8"/></g>
+<path d="M76 44C78 28 94 20 120 20" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>
+<!-- armrests -->
+<rect x="26" y="98" width="42" height="106" rx="18" fill="url(#a)"/>
+<rect x="172" y="98" width="42" height="106" rx="18" fill="url(#a2)"/>
+<rect x="30" y="100" width="34" height="14" rx="7" fill="#fff" fill-opacity=".35"/><rect x="176" y="100" width="34" height="14" rx="7" fill="#fff" fill-opacity=".25"/>
+<!-- seat -->
+<path d="M62 150Q120 136 178 150L186 176H54z" fill="url(#s)"/>
+<rect x="54" y="170" width="132" height="38" rx="14" fill="url(#b)"/>
+<path d="M60 152Q120 140 180 152" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>
+<defs><linearGradient id="sw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#e58a00"/><stop offset="1" stop-color="#ffc247"/></linearGradient></defs>
+<path d="M54 176C98 192 166 164 196 88C168 142 106 162 54 176Z" fill="#000" opacity=".18" transform="translate(0 5)"/>
+<path d="M54 176C98 192 166 164 196 88C168 142 106 162 54 176Z" fill="url(#sw)" stroke="#fff" stroke-width="3" stroke-linejoin="round" paint-order="stroke"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250"><defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe497"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
+<linearGradient id="t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3cbf5c"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="120" cy="238" rx="105" ry="9" fill="url(#sh)"/>
+<!-- base & lift -->
+<rect x="62" y="206" width="116" height="14" rx="6" fill="url(#f)"/>
+<rect x="104" y="162" width="32" height="46" rx="6" fill="url(#t)"/>
+<circle cx="50" cy="226" r="11" fill="url(#f)"/><circle cx="190" cy="226" r="11" fill="url(#f)"/><circle cx="50" cy="226" r="4" fill="#5fd67a"/><circle cx="190" cy="226" r="4" fill="#5fd67a"/>
+<path d="M50 215v-12M190 215v-12" stroke="#063b17" stroke-width="6" stroke-linecap="round"/>
+<!-- frame -->
+<rect x="28" y="152" width="184" height="16" rx="8" fill="url(#f)"/>
+<!-- headboard / footboard -->
+<rect x="24" y="52" width="20" height="128" rx="10" fill="url(#t)"/><rect x="28" y="56" width="6" height="100" rx="3" fill="#fff" fill-opacity=".35"/>
+<rect x="198" y="100" width="20" height="80" rx="10" fill="url(#t)"/><rect x="202" y="104" width="6" height="56" rx="3" fill="#fff" fill-opacity=".35"/>
+<!-- mattress -->
+<path d="M40 124Q120 110 200 124L204 150H36z" fill="url(#v)"/>
+<rect x="36" y="140" width="168" height="26" rx="12" fill="url(#b)"/>
+<path d="M44 126Q120 112 196 126" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>
+<!-- pillow -->
+<rect x="48" y="102" width="62" height="26" rx="13" fill="#fff"/><rect x="48" y="102" width="62" height="26" rx="13" fill="url(#v)" opacity=".25"/>
+<path d="M56 108q25-6 46 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+<!-- up/down arrow -->
+<path d="M150 150l14-14 14 14M164 138v26M150 168l14 14 14-14" fill="none" stroke="#f59e0b" stroke-width="0" />
+<g fill="none" stroke="#f59e0b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M120 190v-62M105 144l15-17 15 17" transform="translate(30 -14)"/></g>
+</svg>

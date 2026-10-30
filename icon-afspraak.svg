@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250"><defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#127a35"/><stop offset="1" stop-color="#063b17"/></linearGradient>
+<linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#dcf5e2"/></linearGradient>
+<radialGradient id="sh"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="120" cy="238" rx="95" ry="9" fill="url(#sh)"/>
+<!-- calendar -->
+<rect x="30" y="38" width="170" height="176" rx="26" fill="url(#f)"/>
+<rect x="30" y="32" width="170" height="176" rx="26" fill="url(#p)"/>
+<path d="M30 58a26 26 0 0 1 26-26h118a26 26 0 0 1 26 26v26H30z" fill="url(#b)"/>
+<rect x="38" y="38" width="154" height="8" rx="4" fill="#fff" fill-opacity=".35"/>
+<rect x="66" y="14" width="16" height="34" rx="8" fill="url(#f)"/><rect x="148" y="14" width="16" height="34" rx="8" fill="url(#f)"/>
+<g fill="#1f9d3f" fill-opacity=".25"><rect x="48" y="102" width="30" height="24" rx="7"/><rect x="88" y="102" width="30" height="24" rx="7"/><rect x="128" y="102" width="30" height="24" rx="7"/><rect x="48" y="138" width="30" height="24" rx="7"/><rect x="88" y="138" width="30" height="24" rx="7"/><rect x="48" y="174" width="30" height="20" rx="7"/></g>
+<rect x="128" y="138" width="30" height="24" rx="7" fill="url(#b)"/>
+<!-- speech bubble with check -->
+<path d="M130 120h76a22 22 0 0 1 22 22v44a22 22 0 0 1-22 22h-34l-22 20v-20h-20a22 22 0 0 1-22-22v-44a22 22 0 0 1 22-22z" fill="#f59e0b" transform="translate(-6 8)"/>
+<path d="M142 170l16 16 30-34" transform="translate(-6 8)" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
