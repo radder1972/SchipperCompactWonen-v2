@@ -27,7 +27,7 @@
  <!-- Chair logo gradients -->
  <linearGradient id="lb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
  <linearGradient id="la" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#48cc68"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
- <linearGradient id="la2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0d5aaa"/><stop offset="1" stop-color="#3cbf5c"/></linearGradient>
+ <linearGradient id="la2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0e6b2e"/><stop offset="1" stop-color="#48cc68"/></linearGradient>
  <linearGradient id="ls" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#88ec9f"/><stop offset="1" stop-color="#1f9d3f"/></linearGradient>
  <linearGradient id="lf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#157a36"/><stop offset="1" stop-color="#063b17"/></linearGradient>
  <linearGradient id="lsw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#e58a00"/><stop offset=".55" stop-color="#f59e0b"/><stop offset="1" stop-color="#ffd25a"/></linearGradient>
