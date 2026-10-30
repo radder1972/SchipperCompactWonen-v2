@@ -12,7 +12,7 @@ a{color:var(--pri);text-decoration:none}img{max-width:100%;display:block}
 nav{display:flex;align-items:center;gap:6px}nav>a,.dd>a{color:var(--fg);padding:8px 12px;border-radius:10px;font-weight:500;font-size:15px;display:block}
 nav>a:hover,.dd>a:hover{background:var(--bg2)}
 .dd{position:relative}.menu{position:absolute;top:100%;left:0;min-width:200px;background:var(--card);border:1px solid var(--bd);border-radius:12px;box-shadow:var(--sh);padding:6px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s}
-.dd:hover .menu,.dd:focus-within .menu{opacity:1;visibility:visible;transform:none}.menu a{display:block;padding:8px 12px;border-radius:8px;color:var(--fg)}.menu a:hover{background:var(--bg2)}
+.dd:hover .menu{opacity:1;visibility:visible;transform:none}.menu a{display:block;padding:8px 12px;border-radius:8px;color:var(--fg)}.menu a:hover{background:var(--bg2)}
 .btn{background:var(--pri);color:#fff!important;padding:10px 18px!important;border-radius:999px!important;font-weight:600;display:inline-block;border:0;cursor:pointer;transition:.2s}.btn:hover{background:var(--pri2)!important;transform:translateY(-1px)}
 .btn.ghost{background:transparent;border:2px solid currentColor;color:var(--pri)!important}
 .theme,.burger{background:none;border:1px solid var(--bd);color:var(--fg);border-radius:10px;width:38px;height:38px;cursor:pointer;font-size:18px}.burger{display:none}
@@ -141,7 +141,7 @@ input,textarea,select{font-size:17px}.spec th,.spec td{font-size:17px}
 #nav a.nl:hover .ni{transform:translateY(-3px) scale(1.1)}
 #nav a.nl:hover,#nav .dd:hover>a.nl{background:var(--card)}
 #nav a.nl:after{left:20%;right:20%;bottom:0;height:4px;border-radius:4px 4px 0 0}
-#nav .dd{display:flex}.menu{left:50%;transform:translate(-50%,6px)}.dd:hover .menu,.dd:focus-within .menu{transform:translate(-50%,0)}
+#nav .dd{display:flex}.menu{left:50%;transform:translate(-50%,6px)}.dd:hover .menu{transform:translate(-50%,0)}.dd.shut .menu{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 .header.sm .wrap.top{min-height:62px}.header.sm .ni{width:0;height:0;opacity:0}.header.sm #nav a.nl,.header.sm #nav .dd>a.nl{padding:10px 20px;min-width:0}.header.sm .mark{width:38px;height:46px}
 .header .wrap.top .logo{margin-right:auto}
 @media(max-width:900px){.burger{display:block}#nav{display:none}#nav.open{display:block}#nav .navin{flex-direction:column;align-items:stretch;gap:0;padding:8px 20px}#nav a.nl,#nav .dd>a.nl{flex-direction:row;justify-content:flex-start;gap:12px;padding:10px 4px;min-width:0;border-radius:10px}.ni{width:34px;height:34px}.menu{transform:none;left:0;position:static}.dd:hover .menu{transform:none}#nav .dd{display:block}.hright .btn{display:none}.header.sm .ni{width:34px;height:34px;opacity:1}}
@@ -186,12 +186,12 @@ main .page .wrap.prose{max-width:820px}
 .hright .btn .bi{width:44px;height:44px;left:-22px}
 /* menu-iconen: grijs/uitgeschakeld, alleen kleur bij hover of actieve pagina */
 #nav .ni{filter:grayscale(1) opacity(.45);transition:filter .25s,transform .25s,width .25s,height .25s}
-#nav a.nl:hover .ni,#nav .dd:hover>a.nl .ni,#nav a.nl.on .ni,#nav .dd:focus-within>a.nl .ni{filter:grayscale(0) opacity(1) drop-shadow(0 5px 8px rgba(10,60,25,.3));transform:translateY(-3px) scale(1.12)}
+#nav a.nl:hover .ni,#nav .dd:hover>a.nl .ni,#nav a.nl.on .ni{filter:grayscale(0) opacity(1) drop-shadow(0 5px 8px rgba(10,60,25,.3));transform:translateY(-3px) scale(1.12)}
 #nav a.nl.on .ni{transform:scale(1.08)}
 #nav a.nl.on:hover .ni{transform:translateY(-3px) scale(1.12)}
 /* "greened out": gedempt groen in plaats van grijs */
 #nav .ni{filter:saturate(.28) brightness(1.08) opacity(.6)}
-#nav a.nl:hover .ni,#nav .dd:hover>a.nl .ni,#nav a.nl.on .ni,#nav .dd:focus-within>a.nl .ni{filter:saturate(1) brightness(1) opacity(1) drop-shadow(0 5px 8px rgba(10,60,25,.3))}
+#nav a.nl:hover .ni,#nav .dd:hover>a.nl .ni,#nav a.nl.on .ni{filter:saturate(1) brightness(1) opacity(1) drop-shadow(0 5px 8px rgba(10,60,25,.3))}
 /* geen box rond menu-items bij hover */
 #nav a.nl,#nav a.nl:hover,#nav a.nl:focus,#nav a.nl:focus-visible,#nav a.nl:active,#nav .dd:hover>a.nl,#nav .dd:focus-within>a.nl{background:none!important;box-shadow:none!important;outline:none}
 #nav a.nl.on:hover,#nav a.nl.on{background:none!important}
