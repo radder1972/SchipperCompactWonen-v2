@@ -67,6 +67,67 @@
    14%, 58% { fill: #fffdf0; r: 3.8px; }
    72%, 100% { fill: #ffc247; r: 2.8px; }
   }
+  svg { cursor: pointer; }
+  svg.dancing .wedge-lift { animation: danceWedge 3.2s cubic-bezier(.36, .07, .19, .97) infinite; }
+  svg.dancing .frame-lift { animation: danceFrame 3.2s cubic-bezier(.36, .07, .19, .97) infinite; }
+  svg.dancing .seat-tilt { animation: danceSeat 3.2s cubic-bezier(.36, .07, .19, .97) infinite; }
+  svg.dancing .back-tilt { animation: danceBack 3.2s cubic-bezier(.36, .07, .19, .97) infinite; }
+  svg.dancing .head-tilt { animation: danceHead 3.2s cubic-bezier(.36, .07, .19, .97) infinite; }
+  svg.dancing .arrow-lift { animation: danceArrow 3.2s cubic-bezier(.36, .07, .19, .97) infinite; }
+  @keyframes danceWedge {
+   0%, 100% { transform: scaleY(.55) skewX(0deg); }
+   10%, 30% { transform: scaleY(.95) skewX(-10deg); }
+   15%, 35% { transform: scaleY(.35) skewX(0deg); }
+   20%, 40% { transform: scaleY(.95) skewX(10deg); }
+   50%, 66% { transform: scaleY(1.25) skewX(0deg); }
+   76% { transform: scaleY(.32); }
+   86% { transform: scaleY(1.12); }
+  }
+  @keyframes danceFrame {
+   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1, 1); }
+   10%, 30% { transform: translate(-10px, -10px) rotate(-9deg) scale(1.06, .95); }
+   15%, 35% { transform: translate(0, 6px) rotate(0deg) scale(1.08, .9); }
+   20%, 40% { transform: translate(10px, -10px) rotate(9deg) scale(1.06, .95); }
+   52% { transform: translate(-6px, -22px) rotate(-12deg) scale(.94, 1.08); }
+   64% { transform: translate(6px, -24px) rotate(12deg) scale(.94, 1.08); }
+   76% { transform: translate(0, 8px) scale(1.1, .88); }
+   86% { transform: translate(0, -14px) scale(1.03, 1.02); }
+  }
+  @keyframes danceSeat {
+   0%, 100% { transform: translate(0, 0) rotate(0deg) scaleY(1); }
+   10%, 30% { transform: translate(-10px, -12px) rotate(-8deg) scaleY(1.35); }
+   15%, 35% { transform: translate(0, 6px) rotate(0deg) scaleY(.75); }
+   20%, 40% { transform: translate(10px, -12px) rotate(8deg) scaleY(1.35); }
+   52%, 64% { transform: translate(0, -24px) scaleY(1.55); }
+   76% { transform: translate(0, 8px) scaleY(.72); }
+   86% { transform: translate(0, -16px) scaleY(1.75); }
+  }
+  @keyframes danceBack {
+   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1, 1); }
+   10%, 30% { transform: translate(-12px, -14px) rotate(-11deg) scale(1.05, .94); }
+   15%, 35% { transform: translate(0, 6px) rotate(0deg) scale(1.06, .92); }
+   20%, 40% { transform: translate(12px, -14px) rotate(11deg) scale(1.05, .94); }
+   52% { transform: translate(-8px, -26px) rotate(-14deg) scale(.92, 1.06); }
+   64% { transform: translate(8px, -26px) rotate(14deg) scale(.92, 1.06); }
+   76% { transform: translate(0, 8px) scale(1.08, .88); }
+   86% { transform: translate(0, -20px) scale(1.06, .82); }
+  }
+  @keyframes danceHead {
+   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+   10%, 30% { transform: translate(10px, 3px) rotate(14deg) scale(1.08); }
+   15%, 35% { transform: translate(0, -3px) rotate(0deg) scale(.96); }
+   20%, 40% { transform: translate(-10px, 3px) rotate(-14deg) scale(1.08); }
+   52% { transform: translate(8px, -4px) rotate(16deg) scale(1.1); }
+   64% { transform: translate(-8px, -4px) rotate(-16deg) scale(1.1); }
+   86% { transform: translate(0, 8px) scale(1.1, 1.14); }
+  }
+  @keyframes danceArrow {
+   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+   10%, 30% { transform: translate(-6px, -10px) rotate(-8deg) scale(1.06); }
+   20%, 40% { transform: translate(6px, -10px) rotate(8deg) scale(1.06); }
+   58% { transform: translate(0, -18px) rotate(-12deg) scale(1.12); }
+   86% { transform: translate(0, -10px) scale(1.08); }
+  }
   @media (prefers-reduced-motion: reduce) {
    .wedge-lift, .frame-lift, .seat-tilt, .back-tilt, .head-tilt, .arrow-lift, .btn-glow { animation: none !important; }
   }
@@ -146,4 +207,16 @@
  <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="#000" opacity=".18" transform="translate(0 5)"/>
  <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="url(#sw)" stroke="#fff" stroke-width="3" stroke-linejoin="round" paint-order="stroke"/>
 </g>
+<script><![CDATA[
+ (function(){
+  var s = document.documentElement, t;
+  s.addEventListener('dblclick', function(){
+   s.classList.remove('dancing');
+   void s.offsetWidth;
+   s.classList.add('dancing');
+   clearTimeout(t);
+   t = setTimeout(function(){ s.classList.remove('dancing'); }, 3200);
+  });
+ })();
+]]></script>
 </svg>

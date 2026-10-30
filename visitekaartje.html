@@ -13,7 +13,9 @@
 body{margin:0;font:16px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;background:radial-gradient(ellipse 75% 70% at 80% 15%,rgba(52,199,89,.12),transparent 65%),radial-gradient(circle at 15% 85%,rgba(245,158,11,.08),transparent 50%),var(--bg);color:var(--fg);min-height:100vh}
 .top{background:#fff;border-bottom:1px solid var(--bd);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);font-family:"Bricolage Grotesque",sans-serif;font-size:21px;font-weight:600}
-.brand img{width:46px;height:48px}
+.brand img{width:46px;height:48px;cursor:pointer;transform-origin:50% 80%}
+.chair-dancing{animation:chairBoogie 3.2s cubic-bezier(.36,.07,.19,.97) both!important;filter:drop-shadow(0 10px 18px rgba(31,157,63,.55)) drop-shadow(0 0 12px rgba(245,158,11,.45))!important}
+@keyframes chairBoogie{0%{transform:translate(0,0) rotate(0deg) scale(1,1)}8%{transform:translate(-6px,-6px) rotate(-11deg) scale(1.08,.94)}14%{transform:translate(0,4px) rotate(0deg) scale(1.1,.9)}22%{transform:translate(6px,-6px) rotate(11deg) scale(1.08,.94)}28%{transform:translate(0,4px) rotate(0deg) scale(1.1,.9)}36%{transform:translate(-5px,-12px) rotate(-9deg) scale(.95,1.1)}44%{transform:translate(5px,-12px) rotate(9deg) scale(.95,1.1)}52%{transform:translate(0,5px) rotate(0deg) scale(1.14,.86)}68%{transform:translate(0,-14px) rotate(360deg) scale(1.12,1.12)}78%{transform:translate(0,4px) rotate(360deg) scale(1.12,.88)}88%{transform:translate(0,-8px) rotate(360deg) scale(1.05,1.06)}100%{transform:translate(0,0) rotate(360deg) scale(1,1)}}
 .brand b{color:var(--pri);font-weight:800}
 .acts{display:flex;flex-wrap:wrap;gap:10px}
 .btn{background:var(--pri);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14.5px;text-decoration:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.2s}
@@ -76,5 +78,16 @@ h1{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(28px,4vw,42px);m
   <div class="spec"><b>Bestandsformaat</b><span>100% Vector SVG (Drukwerkklaar)</span></div>
  </div>
 </main>
+<script>
+document.addEventListener('dblclick',e=>{
+ const im=e.target.closest('img[src*="logo-modern"]')||(e.target.closest('.brand')&&e.target.closest('.brand').querySelector('img'));
+ if(!im)return;
+ e.preventDefault();
+ im.classList.remove('chair-dancing');void im.offsetWidth;
+ im.src='logo-modern-dance.svg';im.classList.add('chair-dancing');
+ clearTimeout(im._dt);
+ im._dt=setTimeout(()=>{im.classList.remove('chair-dancing');im.src='logo-modern.svg'},3200);
+});
+</script>
 </body>
 </html>

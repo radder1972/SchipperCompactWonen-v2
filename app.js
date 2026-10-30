@@ -259,7 +259,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.4.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.4.1 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};
@@ -304,3 +304,42 @@ function initSlider(){const sl=document.querySelector('.sl');if(!sl)return;
  let x0=null;sl.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});sl.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null});
  sl.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(i-1);if(e.key==='ArrowRight')go(i+1)});
  restart()}
+
+// Dubbelklik op het sta-op stoel logo laat de stoel dansen
+const danceTimers=new WeakMap();
+function triggerChairDance(img){
+ if(!img)return;
+ img.classList.remove('chair-dancing');
+ void img.offsetWidth;
+ img.src='logo-modern-dance.svg';
+ img.classList.add('chair-dancing');
+ clearTimeout(danceTimers.get(img));
+ danceTimers.set(img,setTimeout(()=>{
+  img.classList.remove('chair-dancing');
+  img.src='logo-modern.svg';
+ },3200));
+}
+document.querySelectorAll('.mark,.flogo').forEach(el=>el.title='Dubbelklik om de stoel te laten dansen');
+let logoClickTimer=null;
+const headerLogo=$('.header .logo');
+if(headerLogo){
+ headerLogo.addEventListener('click',e=>{
+  if(e.target.closest('.mark')){
+   e.preventDefault();
+   if(e.detail===1){
+    clearTimeout(logoClickTimer);
+    logoClickTimer=setTimeout(()=>{if(location.hash&&location.hash!=='#/')location.hash='#/'},230);
+   }
+  }
+ });
+}
+document.addEventListener('dblclick',e=>{
+ const directImg=e.target.closest('img[src*="logo-modern"]');
+ const logoWrap=e.target.closest('.logo,.flogo,.ico');
+ const targetImg=directImg||(logoWrap&&logoWrap.querySelector('img[src*="logo-modern"]'));
+ if(targetImg){
+  e.preventDefault();
+  clearTimeout(logoClickTimer);
+  triggerChairDance(targetImg);
+ }
+});
