@@ -259,7 +259,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.4.6 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.4.7 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 document.querySelectorAll('#nav .dd').forEach(dd=>{
  dd.addEventListener('mouseleave',()=>{dd.classList.remove('shut');const f=dd.querySelector(':focus');if(f)f.blur()});
  dd.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{dd.classList.add('shut');a.blur()}));
