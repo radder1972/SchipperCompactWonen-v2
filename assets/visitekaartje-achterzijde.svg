@@ -4,10 +4,18 @@
   @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap');
   .f-head { font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif; }
   .f-body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
-  .chair-lift { transform-origin: 115px 195px; animation: staOpChair 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
   .wedge-lift { transform-origin: 120px 218px; animation: staOpWedge 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
-  @keyframes staOpChair { 0%, 18% { transform: translate(0, 4px) rotate(0deg); } 48%, 68% { transform: translate(2px, -13px) rotate(-6.5deg); } 92%, 100% { transform: translate(0, 4px) rotate(0deg); } }
-  @keyframes staOpWedge { 0%, 18% { transform: scaleY(.52); } 48%, 68% { transform: scaleY(1.12); } 92%, 100% { transform: scaleY(.52); } }
+  .frame-lift { animation: staOpFrame 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  .seat-tilt { transform-origin: 120px 172px; animation: staOpSeat 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  .back-tilt { transform-origin: 120px 148px; animation: staOpBack 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  .head-tilt { transform-origin: 120px 34px; animation: staOpHead 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  .arrow-lift { transform-origin: 120px 140px; animation: staOpArrow 5.2s cubic-bezier(.45, .05, .25, 1) infinite; }
+  @keyframes staOpWedge { 0%, 16%, 90%, 100% { transform: scaleY(.38); } 48%, 68% { transform: scaleY(1.12); } }
+  @keyframes staOpFrame { 0%, 16%, 90%, 100% { transform: translateY(6px); } 48%, 68% { transform: translateY(-12px); } }
+  @keyframes staOpSeat { 0%, 16%, 90%, 100% { transform: translateY(6px) scaleY(.78); } 48%, 68% { transform: translateY(-14px) scaleY(1.65); } }
+  @keyframes staOpBack { 0%, 16%, 90%, 100% { transform: translateY(6px) scale(1, 1); } 48%, 68% { transform: translateY(-19px) scale(1.04, .86); } }
+  @keyframes staOpHead { 0%, 16%, 90%, 100% { transform: translateY(0) scale(1, 1); } 48%, 68% { transform: translateY(5px) scale(1.05, 1.08); } }
+  @keyframes staOpArrow { 0%, 16%, 90%, 100% { transform: translateY(4px) scale(.97); } 48%, 68% { transform: translateY(-7px) scale(1.03); } }
  </style>
  <linearGradient id="leftG" x1="0%" y1="0%" x2="100%" y2="100%">
   <stop offset="0%" stop-color="#073d19"/>
@@ -54,9 +62,9 @@
   <rect x="44" y="218" width="152" height="12" rx="6" fill="#04260e"/>
   <rect x="58" y="226" width="22" height="9" rx="4" fill="#021708"/>
   <rect x="160" y="226" width="22" height="9" rx="4" fill="#021708"/>
-  <g class="wedge-lift"><path d="M52 218L56 184L184 176L188 218Z" fill="url(#lf)"/>
-  <path d="M64 210L176 202M64 198L176 190" stroke="#5fd67a" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/></g>
-  <g class="chair-lift">
+  <g class="wedge-lift"><path d="M52 218L56 176L184 176L188 218Z" fill="url(#lf)"/>
+  <path d="M64 206H176M64 192H176" stroke="#5fd67a" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/></g>
+  <g class="back-tilt">
    <path d="M68 38C68 18 88 10 120 10s52 8 52 28l6 116H62z" fill="url(#lb)"/>
    <g clip-path="url(#lc)" stroke="#fff" stroke-opacity=".34" stroke-width="2.2" fill="none">
     <path d="M-50 14L50 140M50 14L-50 140"/><path d="M-30 14L70 140M70 14L-30 140"/><path d="M-10 14L90 140M90 14L-10 140"/>
@@ -68,14 +76,20 @@
     <circle cx="100" cy="62" r="2.8"/><circle cx="140" cy="62" r="2.8"/><circle cx="120" cy="86" r="2.8"/>
     <circle cx="100" cy="110" r="2.8"/><circle cx="140" cy="110" r="2.8"/><circle cx="120" cy="132" r="2.8"/>
    </g>
-   <rect x="78" y="18" width="84" height="30" rx="14" fill="url(#ls)" stroke="#0d5a26" stroke-width="2"/>
-   <path d="M88 24h64" stroke="#fff" stroke-opacity=".65" stroke-width="2.5" stroke-linecap="round"/>
+   <g class="head-tilt">
+    <rect x="78" y="18" width="84" height="30" rx="14" fill="url(#ls)" stroke="#0d5a26" stroke-width="2"/>
+    <path d="M88 24h64" stroke="#fff" stroke-opacity=".65" stroke-width="2.5" stroke-linecap="round"/>
+   </g>
+  </g>
+  <g class="seat-tilt">
+   <path d="M60 138Q120 122 180 138L188 172H52z" fill="url(#ls)"/>
+   <path d="M58 140Q120 126 182 140" fill="none" stroke="#fff" stroke-opacity=".68" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g class="frame-lift">
    <rect x="24" y="92" width="44" height="114" rx="18" fill="url(#la)"/>
    <rect x="172" y="92" width="44" height="114" rx="18" fill="url(#la2)"/>
    <rect x="28" y="95" width="36" height="14" rx="7" fill="#fff" fill-opacity=".35"/>
    <rect x="176" y="95" width="36" height="14" rx="7" fill="#fff" fill-opacity=".25"/>
-   <path d="M60 140Q120 124 180 140L188 170H52z" fill="url(#ls)"/>
-   <path d="M58 142Q120 128 182 142" fill="none" stroke="#fff" stroke-opacity=".68" stroke-width="3" stroke-linecap="round"/>
    <rect x="52" y="164" width="136" height="42" rx="14" fill="url(#lb)"/>
    <rect x="64" y="171" width="112" height="26" rx="9" fill="url(#lf)" fill-opacity=".45"/>
    <path d="M29 148h32v38a8 8 0 0 1-8 8H37a8 8 0 0 1-8-8z" fill="#0b4f21" fill-opacity=".55" stroke="#fff" stroke-opacity=".3" stroke-width="1.5"/>
@@ -83,8 +97,10 @@
    <circle cx="45" cy="141" r="2.8" fill="#ffc247"/>
    <circle cx="45" cy="150" r="2.8" fill="#5fd67a"/>
   </g>
-  <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="#000" opacity=".2" transform="translate(0 5)"/>
-  <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="url(#lsw)" stroke="#fff" stroke-width="3" stroke-linejoin="round" paint-order="stroke"/>
+  <g class="arrow-lift">
+   <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="#000" opacity=".2" transform="translate(0 5)"/>
+   <path d="M48 184C98 198 164 168 198 86L211 92L205 54L173 75L185 80C154 146 96 172 48 184Z" fill="url(#lsw)" stroke="#fff" stroke-width="3" stroke-linejoin="round" paint-order="stroke"/>
+  </g>
  </g>
 
  <!-- Left panel text & opening hours -->
