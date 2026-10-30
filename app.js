@@ -197,9 +197,9 @@ cat:k=>{
    ${grp?`<div class="sub-pills"><span class="fp-sublbl">Subcategorie:</span><a class="spill${g?' on':''}" href="#/cat/${gk}">Alles in ${grp.t} <b>${grp.subs.reduce((n,s)=>n+products[s].length,0)}</b></a>${grp.subs.map(s=>`<a class="spill${k===s?' on':''}" href="#/cat/${s}">${names[s]} <b>${products[s].length}</b></a>`).join('')}</div>`:''}
    <div class="fbar">
     <label class="f-field f-search"><span>Zoeken</span><div class="f-in"><i class="tic">${icons.search}</i><input id="q" type="search" placeholder="Model, merk of trefwoord…"></div></label>
-    <label class="f-field"><span>Conditie</span><select id="f-cond" aria-label="Filter op conditie"><option value="">Alle (Nieuw &amp; Occasion)</option><option value="nieuw">Nieuw op maat</option><option value="occasion">Occasion / Gereviseerd</option></select></label>
+    <label class="f-field"><span>Conditie</span><select id="f-cond" aria-label="Filter op conditie"><option value="">Alle condities</option><option value="nieuw">Nieuw op maat</option><option value="occasion">Occasion / Gereviseerd</option></select></label>
     ${brands.length?`<label class="f-field"><span>Merk</span><select id="f-brand" aria-label="Filter op merk"><option value="">Alle merken (${brands.length})</option>${brands.map(b=>`<option value="${b}">${b}</option>`).join('')}</select></label>`:''}
-    <label class="f-field"><span>Sortering</span><select id="f-sort" aria-label="Sorteer op"><option value="default">Aanbevolen</option><option value="price-asc">Prijs: laag → hoog</option><option value="price-desc">Prijs: hoog → laag</option><option value="name">Naam: A → Z</option></select></label>
+    <label class="f-field"><span>Sortering</span><select id="f-sort" aria-label="Sorteer op"><option value="default">Aanbevolen</option><option value="price-asc">Prijs: laag naar hoog</option><option value="price-desc">Prijs: hoog naar laag</option><option value="name">Naam: A t/m Z</option></select></label>
    </div>
   </div>
   <div class="grid g4" id="pl">${items.map(p=>prod({name:p.name,slug:p.slug,img:p.img||(p.images&&p.images[0])||'',price:p.price?(typeof p.price==='number'?p.price.toFixed(2):p.price):'',old:p.old?(typeof p.old==='number'?p.old.toFixed(2):p.old):'',condition:p.condition})).join('')}</div>
@@ -259,7 +259,7 @@ function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.c
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
 addEventListener('hashchange',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.3.3 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.3.4 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};

@@ -368,7 +368,10 @@ h2.t:after,.page h1:after{content:"";position:absolute;left:0;bottom:0;width:128
 .fbar{display:grid!important;grid-template-columns:minmax(0,1.35fr) repeat(auto-fit,minmax(150px,1fr));gap:12px;padding:14px 0 0;align-items:end}
 .f-field{display:flex;flex-direction:column;gap:5px;min-width:0;margin:0}
 .f-field>span{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
-.f-field input,.f-field select{width:100%;min-width:0;height:42px;padding:8px 12px;font-size:14.5px;border-radius:10px;background:var(--card);border:1px solid var(--bd);text-overflow:ellipsis}
+.f-field input,.f-field select{width:100%;min-width:0;height:42px;padding:8px 12px;font-size:14.5px;border-radius:10px;background-color:var(--card);border:1px solid var(--bd);text-overflow:ellipsis;transition:border-color .2s,box-shadow .2s}
+.f-field select{appearance:none;-webkit-appearance:none;padding-right:38px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='10' fill='%231f9d3f' fill-opacity='.12'/%3E%3Cpath d='M8.5 10.5L12 14l3.5-3.5' stroke='%231f9d3f' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:20px 20px}
+.f-field input:hover,.f-field select:hover{border-color:color-mix(in srgb,var(--pri) 45%,var(--bd))}
+.f-field select:focus{outline:2px solid var(--pri)}
 .f-in{position:relative;display:flex;align-items:center}
 .f-in .tic{position:absolute;left:11px;width:18px;height:18px;margin:0;pointer-events:none}
 .f-in input{padding-left:36px}
