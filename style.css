@@ -451,17 +451,16 @@ h2.t:after,.page h1:after{content:"";position:absolute;left:0;bottom:0;width:128
 .pd-tags .tag{margin:0}
 .prod img.ti3d,.ti3d{width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;padding:0!important;margin:0!important;position:static!important;border-radius:0!important;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,.22));flex-shrink:0;transform:none!important}
 .tag.lg .ti3d{width:28px!important;height:28px!important;max-width:28px!important;max-height:28px!important}
-/* Menu-indicatie v4: geen los streepje meer op de onderrand, maar een huisstijl pil-capsule rond het actieve label */
+/* Menu-indicatie v5: subtiele lichtgroene tint-capsule (niet schreeuwerig, geen los streepje op de onderrand) */
 #nav a.nl:after{display:none!important}
 #nav a.nl,#nav .dd>a.nl{gap:4px;padding:8px 16px 10px}
-#nav a.nl>span{display:inline-flex;align-items:center;gap:6px;height:28px;line-height:1;padding:0 13px;border-radius:999px;border:1px solid transparent;transition:background .22s ease,color .22s ease,box-shadow .22s ease,border-color .22s ease}
-#nav a.nl:not(.on):hover>span,#nav .dd:hover>a.nl:not(.on)>span{background:color-mix(in srgb,var(--pri) 11%,var(--card));border-color:color-mix(in srgb,var(--pri) 26%,transparent);color:var(--pri2)}
-[data-theme=dark] #nav a.nl:not(.on):hover>span,[data-theme=dark] #nav .dd:hover>a.nl:not(.on)>span{color:var(--pri)}
-#nav a.nl.on>span{background:linear-gradient(135deg,#1f9d3f,#147a31);color:#fff!important;border-color:rgba(255,255,255,.2);box-shadow:0 4px 12px rgba(31,157,63,.28)}
-#nav a.nl.on>span:before{content:"";width:6px;height:6px;border-radius:50%;background:#ffc247;box-shadow:0 0 6px rgba(255,194,71,.8);flex-shrink:0}
-#nav a.nl.on .chev{border-color:#fff;opacity:.95}
+#nav a.nl>span{display:inline-flex;align-items:center;gap:6px;height:27px;line-height:1;padding:0 12px;border-radius:999px;border:1px solid transparent;transition:background .2s ease,color .2s ease,border-color .2s ease}
+#nav a.nl:not(.on):hover>span,#nav .dd:hover>a.nl:not(.on)>span{background:color-mix(in srgb,var(--pri) 7%,transparent);color:var(--pri)}
+#nav a.nl.on>span{background:color-mix(in srgb,var(--pri) 13%,var(--card));color:var(--pri2)!important;font-weight:700;border-color:color-mix(in srgb,var(--pri) 30%,transparent)}
+[data-theme=dark] #nav a.nl.on>span{color:var(--pri)!important}
+#nav a.nl.on .chev{border-color:currentColor;opacity:.85}
 @media(max-width:900px){
- #nav a.nl>span{height:auto;padding:5px 12px}
+ #nav a.nl>span{height:auto;padding:4px 10px}
 }
 /* Dubbelklik Dans-modus voor de Sta-Op Stoel */
 .mark,.flogo,img[src*="logo-modern"]{cursor:pointer;user-select:none;-webkit-user-select:none;transform-origin:50% 80%}
