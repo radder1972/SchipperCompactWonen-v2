@@ -47,37 +47,54 @@ function drawCal(){
 }
 function drawSlots(){
  const box=$('#ts');if(!st.date){box.innerHTML='<p class="ask">Selecteer eerst een datum.</p>';return}
- const slots=C.slots[st.type],sat=st.date.getDay()===6;
+ const slots=C.slots[st.type],sat=st.date.getDay()===6,dateStr=ymd(st.date);
  const draw=busy=>{box.innerHTML='';slots.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='ap-s';b.textContent=s;
   const closed=sat&&i>=C.saturdayOpenSlots[st.type];const full=busy&&busy.includes(s);
   if(closed||full){b.disabled=true;b.textContent=`${s} (${closed?'Gesloten':'Vol'})`}
   if(st.slot===s&&!b.disabled)b.classList.add('selected');
   b.onclick=()=>{st.slot=s;box.querySelectorAll('.ap-s').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');$('#slot-e').textContent=''};box.append(b)})};
- if(C.webhookUrl){box.innerHTML='<p class="ask">Tijden laden…</p>';
-  fetch(`${C.webhookUrl}?date=${ymd(st.date)}`).then(r=>r.json()).then(d=>draw(Array.isArray(d.busySlots)?d.busySlots:null)).catch(()=>draw(null))}
- else draw(null)
+ box.innerHTML='<p class="ask">Tijden laden…</p>';
+ fetch(`/api/contact?date=${dateStr}`)
+  .then(r=>r.ok?r.json():Promise.reject())
+  .then(d=>{if(d&&d.success&&Array.isArray(d.busySlots)){draw(d.busySlots);return}throw new Error()})
+  .catch(()=>{
+   if(C.webhookUrl){
+    fetch(`${C.webhookUrl}?date=${dateStr}`).then(r=>r.json()).then(d=>draw(Array.isArray(d.busySlots)?d.busySlots:null)).catch(()=>draw(null));
+   }else draw(null);
+  });
 }
 const setErr=(id,t)=>{const e=$('#'+id+'-e');if(e)e.textContent=t||''};
 const validPhone=p=>{const c=p.replace(/\s+/g,'');return c.startsWith('+31')?/^\+31\d{9}$/.test(c):/^\d{10}$/.test(c)};
 async function send(payload,mailBody,subject){
+ send.viaApi=false;send.slotTaken='';
  const mail=`mailto:${C.replyTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailBody)}`;
  // 1. Probeer eerst onze eigen Serverless API route (/api/contact via Nodemailer + Google Calendar API)
  try{
+  const isCallback=payload.type==='quick_appointment_call_me';
   const apiRes=await fetch('/api/contact',{
    method:'POST',
    headers:{'Content-Type':'application/json'},
    body:JSON.stringify({
     voornaam:payload.name||'Klant',
     email:payload.email||'',
-    datum:payload.startISO||payload.date||new Date().toISOString(),
+    datum:payload.date||payload.startISO||new Date().toISOString(),
+    datumLabel:payload.dateLabel||'',
     tijd:payload.timeSlot||'',
+    startISO:payload.startISO||'',
+    endISO:payload.endISO||'',
     telefoon:payload.phone||'',
     locatie:payload.address||C.showroom,
     opmerkingen:payload.notes||'',
-    type:'afspraak'
+    chair:payload.chair||st.chair||'',
+    appointmentType:payload.appointmentType||st.type||'showroom',
+    type:isCallback?'callback':'afspraak'
    })
   });
   const apiData=await apiRes.json().catch(()=>({}));
+  if(apiRes.status===409&&apiData.code==='SLOT_TAKEN'){
+   send.slotTaken=apiData.error||'Dit tijdstip is zojuist gereserveerd. Kies alstublieft een ander tijdstip.';
+   return false;
+  }
   if(apiRes.ok&&apiData.success){
    send.viaApi=true;
    return true;
@@ -124,10 +141,10 @@ export function initAfspraak(){
   const label=st.type==='home'?'Passing aan huis':'Showroombezoek Dordrecht',loc=st.type==='home'?a:C.showroom;
   const when=st.date.toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const emailHtml=`<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#222;max-width:600px;margin:0 auto;padding:24px 20px"><h2 style="color:#1f9d3f;margin:0 0 4px">${C.senderName}</h2><p style="margin:0 0 20px;color:#666">De specialist in sta-op stoelen en zorghulpmiddelen</p><p>Beste ${n},</p><p>Bedankt voor uw aanvraag. Uw afspraak staat bij ons genoteerd:</p><table style="border-collapse:collapse;font-size:14px"><tr><td style="padding:4px 14px 4px 0;color:#666">Type afspraak:</td><td><b>${label}</b></td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Datum:</td><td><b>${when}</b></td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Tijdstip:</td><td><b>${st.slot}</b></td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Locatie:</td><td>${loc}</td></tr><tr><td style="padding:4px 14px 4px 0;color:#666">Telefoon:</td><td>${p}</td></tr>${no&&no!=='-'?`<tr><td style="padding:4px 14px 4px 0;color:#666">Opmerkingen:</td><td>${no}</td></tr>`:''}</table><p>Wij nemen telefonisch contact met u op om de afspraak te bevestigen.</p>${st.type==='showroom'?`<p><b>Showroom:</b> ${C.showroom}. Gratis parkeren voor de deur.</p>`:''}<p>Met vriendelijke groet,<br><b>${C.senderName}</b><br>${C.phone} · <a href="mailto:${C.replyTo}">${C.replyTo}</a><br>${C.showroom}</p></div>`;
-  const payload={brand:C.brand,site:C.site,name:n,phone:p,email:m,date:ymd(st.date),timeSlot:st.slot,startTime:s,endTime:en,startISO:iso(s),endISO:iso(en),appointmentType:st.type,address:loc,notes:no||'-',emailSubject:`Bevestiging van uw aanvraag voor een adviesgesprek - ${C.senderName}`,senderName:C.senderName,replyTo:C.replyTo,notificationEmail:C.notificationEmail,emailHtml,timestamp:new Date().toISOString()};
+  const payload={brand:C.brand,site:C.site,name:n,phone:p,email:m,date:ymd(st.date),dateLabel:when,timeSlot:st.slot,startTime:s,endTime:en,startISO:iso(s),endISO:iso(en),appointmentType:st.type,address:loc,chair:st.chair||'',notes:no||'-',emailSubject:`Bevestiging van uw aanvraag voor een adviesgesprek - ${C.senderName}`,senderName:C.senderName,replyTo:C.replyTo,notificationEmail:C.notificationEmail,emailHtml,timestamp:new Date().toISOString()};
   $('#as').disabled=true;$('#as').innerHTML='<span class="btn-spin" aria-hidden="true"></span>Afspraak inplannen…';
   send(payload,`Type: ${label}\nDatum: ${when}\nTijd: ${st.slot}\nLocatie: ${loc}\nNaam: ${n}\nTelefoon: ${p}\nE-mail: ${m}\nOpmerkingen: ${no||'-'}`,`Afspraakaanvraag ${label} – ${n}`)
-   .then(ok=>{if(!ok){showFail($('#as'),'Afspraak aanvragen',$('#af'));return}done(doneBox(`<table class="spec ap-sum"><tr><th>Type</th><td>${label}</td></tr><tr><th>Datum</th><td>${when}</td></tr><tr><th>Tijdstip</th><td>${st.slot}</td></tr><tr><th>Locatie</th><td>${loc}</td></tr></table>
+   .then(ok=>{if(!ok){if(send.slotTaken){$('#as').disabled=false;$('#as').textContent='Afspraak aanvragen';st.slot=null;setErr('slot',send.slotTaken);drawSlots();return}showFail($('#as'),'Afspraak aanvragen',$('#af'));return}done(doneBox(`<table class="spec ap-sum"><tr><th>Type</th><td>${label}</td></tr><tr><th>Datum</th><td>${when}</td></tr><tr><th>Tijdstip</th><td>${st.slot}</td></tr><tr><th>Locatie</th><td>${loc}</td></tr></table>
    <p>Wij hebben uw afspraakaanvraag ontvangen en nemen telefonisch contact met u op om deze definitief te bevestigen.${send.viaApi||C.webhookUrl?` U ontvangt tevens een bevestiging op <b>${m}</b>.`:' <br><small class="ask">Er is een e-mail voor u klaargezet; verstuur die in uw mailprogramma om de aanvraag te voltooien.</small>'}</p>`))})};
 }
 
