@@ -406,8 +406,7 @@ document.querySelectorAll('#nav .dd').forEach(dd=>{
  dd.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{dd.classList.add('shut');a.blur()}));
 });
 $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',o)};
-const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
-$('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};
+document.documentElement.dataset.theme='light';try{localStorage.removeItem('theme')}catch{}
 
 app.addEventListener('click',e=>{const c=e.target.closest('.prod');if(c)navigateTo('product',c.dataset.s);const t=e.target.closest('.thumbs img');if(t)$('#mainimg').src=t.src});
 app.addEventListener('keydown',e=>{if(e.key==='Enter'){const c=e.target.closest('.prod');if(c)navigateTo('product',c.dataset.s)}});
