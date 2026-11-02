@@ -268,14 +268,139 @@ function initChecklist(){
   f.style.opacity='.65';
  };
 }
-function route(){setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.classList.toggle('on',l.getAttribute('href')===(location.hash||'#/')||(location.hash.startsWith(l.getAttribute('href'))&&l.getAttribute('href').length>3&&l.getAttribute('href')!=='#/'))));const [,r,a]=location.hash.split('/');const v=views[r||'home'];app.innerHTML=(v?v(a):views.nf());
- $('#nav').classList.remove('open');scrollTo(0,0);document.title=(r&&r!=='home'?'':'')+'Schipper Compact Wonen';
+const pathMap={
+ '/cat/zitcomfort':['cat','zitcomfort'],
+ '/zitcomfort':['cat','zitcomfort'],
+ '/cat/zitcomfort/sta-op-stoelen':['cat','zitcomfort_sta-op-stoelen'],
+ '/zitcomfort/sta-op-stoelen':['cat','zitcomfort_sta-op-stoelen'],
+ '/cat/zitcomfort/seniorenstoelen':['cat','zitcomfort_seniorenstoelen'],
+ '/zitcomfort/senioren-stoelen':['cat','zitcomfort_seniorenstoelen'],
+ '/zitcomfort/seniorenstoelen':['cat','zitcomfort_seniorenstoelen'],
+ '/cat/ligcomfort':['cat','ligcomfort'],
+ '/ligcomfort':['cat','ligcomfort'],
+ '/cat/ligcomfort/senioren-ledikanten':['cat','ligcomfort_senioren-ledikanten'],
+ '/ligcomfort/senioren-ledikanten':['cat','ligcomfort_senioren-ledikanten'],
+ '/cat/ligcomfort/hooglaag-bedden':['cat','ligcomfort_hooglaag-bedden'],
+ '/cat/ligcomfort/hoog-laag-bedden':['cat','ligcomfort_hooglaag-bedden'],
+ '/ligcomfort/hooglaag-bedden':['cat','ligcomfort_hooglaag-bedden'],
+ '/ligcomfort/hoog-laag-bedden':['cat','ligcomfort_hooglaag-bedden'],
+ '/cat/ligcomfort/bed-toebehoren':['cat','ligcomfort_bed-toebehoren'],
+ '/cat/ligcomfort/toebehoren':['cat','ligcomfort_bed-toebehoren'],
+ '/ligcomfort/bed-toebehoren':['cat','ligcomfort_bed-toebehoren'],
+ '/cat/zorgcomfort':['cat','zorgcomfort'],
+ '/zorgcomfort':['cat','zorgcomfort'],
+ '/cat/zorgcomfort/loophulpmiddelen':['cat','zorgcomfort_loophulpmiddelen'],
+ '/zorgcomfort/loophulpmiddelen':['cat','zorgcomfort_loophulpmiddelen'],
+ '/cat/zorgcomfort/trapliften':['cat','zorgcomfort_trapliften'],
+ '/zorgcomfort/trapliften':['cat','zorgcomfort_trapliften'],
+ '/winkel':['cat','all'],
+ '/collectie':['cat','all'],
+ '/informatie':['informatie',''],
+ '/contact':['contact',''],
+ '/advies-afspraak':['afspraak',''],
+ '/afspraak':['afspraak','']
+};
+const routeToPath={
+ 'home':'/',
+ 'cat/all':'/winkel/',
+ 'cat/zitcomfort':'/cat/zitcomfort/',
+ 'cat/zitcomfort_sta-op-stoelen':'/cat/zitcomfort/sta-op-stoelen/',
+ 'cat/zitcomfort_seniorenstoelen':'/cat/zitcomfort/seniorenstoelen/',
+ 'cat/ligcomfort':'/cat/ligcomfort/',
+ 'cat/ligcomfort_senioren-ledikanten':'/cat/ligcomfort/senioren-ledikanten/',
+ 'cat/ligcomfort_hooglaag-bedden':'/cat/ligcomfort/hooglaag-bedden/',
+ 'cat/ligcomfort_bed-toebehoren':'/cat/ligcomfort/bed-toebehoren/',
+ 'cat/zorgcomfort':'/cat/zorgcomfort/',
+ 'cat/zorgcomfort_loophulpmiddelen':'/cat/zorgcomfort/loophulpmiddelen/',
+ 'cat/zorgcomfort_trapliften':'/cat/zorgcomfort/trapliften/',
+ 'informatie':'/informatie/',
+ 'contact':'/contact/',
+ 'afspraak':'/advies-afspraak/'
+};
+function cleanUrlFor(r,a){
+ if(!r||r==='home')return '/';
+ if(r==='product'&&a)return `/product/${a}/`;
+ const k=a?`${r}/${a}`:r;
+ return routeToPath[k]||`/#/${k}`;
+}
+function resolveRoute(){
+ if(location.hash&&location.hash.startsWith('#/')){
+  const [,r,a]=location.hash.split('/');
+  const clean=cleanUrlFor(r||'home',a||'');
+  if(!clean.startsWith('/#/')){
+   try{history.replaceState(null,'',clean)}catch{}
+  }
+  return [r||'home',a||''];
+ }
+ const cleanPath=location.pathname.replace(/\/index\.html$/,'').replace(/\/+$/,'')||'/';
+ if(pathMap[cleanPath])return pathMap[cleanPath];
+ const pm=cleanPath.match(/^\/product\/([^/]+)$/);
+ if(pm&&pm[1])return ['product',decodeURIComponent(pm[1])];
+ return ['home',''];
+}
+function navigateTo(r,a){
+ const clean=cleanUrlFor(r,a);
+ if(!clean.startsWith('/#/')){
+  try{
+   history.pushState(null,'',clean);
+   route();
+   return;
+  }catch{}
+ }
+ location.hash=`#/${r}${a?'/'+a:''}`;
+}
+function updateSeoMeta(r,a){
+ let t='Schipper Compact Wonen – Sta-op stoelen, Seniorenstoelen & Zorgcomfort Dordrecht';
+ let d='Al ruim 35 jaar dé specialist in sta-op stoelen (nieuw & occasions v.a. € 595,-), senioren fauteuils, hoog-laag bedden en zorghulpmiddelen in Dordrecht & regio Rotterdam.';
+ if(r==='cat'){
+  const g=groups[a],nm=names[a];
+  if(a==='zitcomfort_seniorenstoelen'){
+   t='Seniorenstoelen & Senioren Fauteuils op Maat (v.a. € 595,-) | Schipper Compact Wonen';
+   d='Seniorenstoelen en ergonomische senioren fauteuils op uw maat afgesteld in Dordrecht. Nieuwe modellen & gekeurde occasions van Fitform, Farstrup & Hjort Knudsen.';
+  }else if(a==='zitcomfort_sta-op-stoelen'){
+   t='Sta-op Stoelen Nieuw & Occasions (v.a. € 675,-) | Schipper Compact Wonen Dordrecht';
+   d='Ruime collectie elektrische sta-op stoelen (nieuw & gereviseerde Fitform occasions) op maat afgesteld door onze bewegingstechnoloog in Dordrecht & regio Rotterdam.';
+  }else if(g){
+   t=`${g.t} – Persoonlijk Maatwerk & Advies | Schipper Compact Wonen Dordrecht`;
+   d=g.d+' Proefzitten in onze showroom in Dordrecht of vrijblijvend thuisadvies.';
+  }else if(nm){
+   t=`${nm} – Collectie & Prijzen | Schipper Compact Wonen Dordrecht`;
+   d=`Bekijk onze collectie ${nm.toLowerCase()} met transparante prijzen. Persoonlijk aangemeten door onze bewegingstechnoloog in Dordrecht.`;
+  }
+ }else if(r==='product'&&bySlug[a]){
+  const p=bySlug[a];
+  const pr=p.price?` – € ${Number(p.price).toLocaleString('nl-NL',{minimumFractionDigits:2})}`:'';
+  const cond=p.condition&&p.condition!=='nieuw'?` (${p.condition})`:'';
+  t=`${p.name}${cond}${pr} | Schipper Compact Wonen Dordrecht`;
+  const rawDesc=(p.short||p.desc||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+  d=rawDesc?rawDesc.slice(0,155):(t+' – Persoonlijk op maat afgesteld in onze showroom in Dordrecht of bij u thuis.');
+ }else if(r==='informatie'){
+  t='Over Ons & Bewegingstechnoloog Geertjan | Schipper Compact Wonen Dordrecht';
+  d='Al ruim 35 jaar specialist in sta-op stoelen, seniorenstoelen en zorghulpmiddelen. Medisch en technisch zitadvies door bewegingstechnoloog in Dordrecht en aan huis.';
+ }else if(r==='contact'){
+  t='Contact & Showroom Merwedestraat 239 Dordrecht | Schipper Compact Wonen';
+  d='Bezoek onze drempelvrije showroom aan de Merwedestraat 239 in Dordrecht (gratis parkeren voor de deur) of bel 078 - 631 4858 voor een thuisbezoek.';
+ }else if(r==='afspraak'){
+  t='Adviesafspraak Plannen (Showroom of Aan Huis) | Schipper Compact Wonen';
+  d='Plan direct online een vrijblijvende proefzit-afspraak in onze showroom in Dordrecht of vraag een thuisadvies aan met onze bewegingstechnoloog.';
+ }
+ document.title=t;
+ const md=document.querySelector('meta[name="description"]');
+ if(md)md.setAttribute('content',d);
+}
+function route(){
+ const [r,a]=resolveRoute();
+ const activeHash=r==='home'?'#/':`#/${r}${a?'/'+a:''}`;
+ setTimeout(()=>document.querySelectorAll('a.nl').forEach(l=>l.classList.toggle('on',l.getAttribute('href')===activeHash||(activeHash.startsWith(l.getAttribute('href'))&&l.getAttribute('href').length>3&&l.getAttribute('href')!=='#/'))));
+ const v=views[r||'home'];app.innerHTML=(v?v(a):views.nf());
+ $('#nav').classList.remove('open');scrollTo(0,0);
+ updateSeoMeta(r,a);
  initFilters();initChecklist();initAfspraak();initSlider();
  const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.1});
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
-addEventListener('hashchange',route);route();
+addEventListener('hashchange',route);addEventListener('popstate',route);route();
 $('#y').textContent=new Date().getFullYear();
-console.log('%c Schipper Compact Wonen • v1.4.9 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
+console.log('%c Schipper Compact Wonen • v1.5.0 ','background:#1f9d3f;color:#fff;font-weight:700;padding:4px 8px;border-radius:4px');
 document.querySelectorAll('#nav .dd').forEach(dd=>{
  dd.addEventListener('mouseleave',()=>{dd.classList.remove('shut');const f=dd.querySelector(':focus');if(f)f.blur()});
  dd.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{dd.classList.add('shut');a.blur()}));
@@ -284,13 +409,13 @@ $('.burger').onclick=e=>{const o=$('#nav').classList.toggle('open');e.currentTar
 const root=document.documentElement,th=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');root.dataset.theme=th;
 $('.theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.theme=root.dataset.theme};
 
-app.addEventListener('click',e=>{const c=e.target.closest('.prod');if(c)location.hash='#/product/'+c.dataset.s;const t=e.target.closest('.thumbs img');if(t)$('#mainimg').src=t.src});
-app.addEventListener('keydown',e=>{if(e.key==='Enter'){const c=e.target.closest('.prod');if(c)location.hash='#/product/'+c.dataset.s}});
+app.addEventListener('click',e=>{const c=e.target.closest('.prod');if(c)navigateTo('product',c.dataset.s);const t=e.target.closest('.thumbs img');if(t)$('#mainimg').src=t.src});
+app.addEventListener('keydown',e=>{if(e.key==='Enter'){const c=e.target.closest('.prod');if(c)navigateTo('product',c.dataset.s)}});
 const up=document.createElement('button');up.className='up';up.textContent='↑';up.setAttribute('aria-label','Naar boven');up.onclick=()=>scrollTo({top:0,behavior:'smooth'});document.body.append(up);
 addEventListener('scroll',()=>up.classList.toggle('show',scrollY>500));
 document.querySelectorAll('[data-i]').forEach(e=>e.innerHTML=icons[e.dataset.i]);
 
-// Showroom modal & afspraakknoppen
+// Showroom modal, afspraakknoppen & schone URL-navigatie
 const srModal=$('#showroom-modal');
 document.addEventListener('click',e=>{
  if(e.target.closest('[data-open-showroom]')){
@@ -307,8 +432,18 @@ document.addEventListener('click',e=>{
   document.querySelectorAll('[data-sr-photo]').forEach(b=>b.classList.toggle('on',b===pbtn));
   return;
  }
- const l=e.target.closest('a[href^="#/afspraak"]');if(!l||l.closest('.ap-modal'))return;
- const s=l.getAttribute('href').split('/')[2];e.preventDefault();openAfspraakModal(s&&bySlug[s]?bySlug[s].name:'');
+ const l=e.target.closest('a[href^="#/afspraak"]');
+ if(l&&!l.closest('.ap-modal')){
+  const s=l.getAttribute('href').split('/')[2];e.preventDefault();openAfspraakModal(s&&bySlug[s]?bySlug[s].name:'');
+  return;
+ }
+ const hl=e.target.closest('a[href^="#/"]');
+ if(hl&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){
+  const href=hl.getAttribute('href')||'#/';
+  const [,r,a]=href.split('/');
+  e.preventDefault();
+  navigateTo(r||'home',a||'');
+ }
 });
 addEventListener('keydown',e=>{if(e.key==='Escape'&&srModal&&!srModal.hidden){srModal.hidden=true;document.body.style.overflow=''}});
 window.__slugFor=n=>(all.find(p=>p.name===n)||{}).slug||'';
@@ -348,7 +483,7 @@ if(headerLogo){
    e.preventDefault();
    if(e.detail===1){
     clearTimeout(logoClickTimer);
-    logoClickTimer=setTimeout(()=>{if(location.hash&&location.hash!=='#/')location.hash='#/'},230);
+    logoClickTimer=setTimeout(()=>navigateTo('home',''),230);
    }
   }
  });
