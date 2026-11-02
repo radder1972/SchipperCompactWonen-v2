@@ -480,3 +480,7 @@ h2.t:after,.page h1:after{content:"";position:absolute;left:0;bottom:0;width:128
 /* Loading spinner voor formulier-knoppen */
 .btn-spin{display:inline-block;width:16px;height:16px;border:2.2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:btnSpin .65s linear infinite;vertical-align:-3px;margin-right:7px;flex-shrink:0}
 @keyframes btnSpin{to{transform:rotate(360deg)}}
+/* Subtiele thema-knop in de bovenbalk (topbar) */
+.topbar .wrap{align-items:center}
+.topbar .theme{width:22px!important;height:22px!important;margin:0 0 0 4px!important;padding:0!important;background-image:none!important;font-size:13px!important;line-height:1!important;color:var(--mut)!important;border:1px solid color-mix(in srgb,var(--bd) 80%,transparent)!important;border-radius:50%!important;opacity:.48;display:inline-grid;place-items:center;transition:opacity .2s ease,color .2s ease,border-color .2s ease!important;transform:none!important}
+.topbar .theme:hover{opacity:.95;color:var(--pri)!important;border-color:var(--pri)!important;transform:none!important}
