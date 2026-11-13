@@ -1,24 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 250">
 <defs>
- <style>
-  .wedge-lift { transform-origin: 120px 218px; animation: staOpWedge 5s cubic-bezier(.45, .05, .25, 1) infinite; }
-  .frame-lift { transform-origin: 120px 180px; animation: staOpFrame 5s cubic-bezier(.45, .05, .25, 1) infinite; }
-  .seat-tilt { transform-origin: 120px 172px; animation: staOpSeat 5s cubic-bezier(.45, .05, .25, 1) infinite; }
-  .back-tilt { transform-origin: 120px 148px; animation: staOpBack 5s cubic-bezier(.45, .05, .25, 1) infinite; }
-  .head-tilt { transform-origin: 120px 36px; animation: staOpHead 5s cubic-bezier(.45, .05, .25, 1) infinite; }
-  .arrow-lift { transform-origin: 120px 140px; animation: staOpArrow 5s cubic-bezier(.45, .05, .25, 1) infinite; }
-  .btn-glow { animation: staOpBtn 5s ease-in-out infinite; }
-  @keyframes staOpWedge { 0%, 16% { transform: scaleY(.38); } 48%, 68% { transform: scaleY(1.12); } 92%, 100% { transform: scaleY(.38); } }
-  @keyframes staOpFrame { 0%, 16% { transform: translateY(6px); } 48%, 68% { transform: translateY(-12px); } 92%, 100% { transform: translateY(6px); } }
-  @keyframes staOpSeat { 0%, 16% { transform: translateY(6px) scaleY(.78); } 48%, 68% { transform: translateY(-14px) scaleY(1.65); } 92%, 100% { transform: translateY(6px) scaleY(.78); } }
-  @keyframes staOpBack { 0%, 16% { transform: translateY(6px) scale(1, 1); } 48%, 68% { transform: translateY(-19px) scale(1.04, .86); } 92%, 100% { transform: translateY(6px) scale(1, 1); } }
-  @keyframes staOpHead { 0%, 16% { transform: translateY(0) scale(1); } 48%, 68% { transform: translateY(5px) scale(1.05, 1.08); } 92%, 100% { transform: translateY(0) scale(1); } }
-  @keyframes staOpArrow { 0%, 16% { transform: translateY(4px) scale(.97); opacity: .88; } 48%, 68% { transform: translateY(-8px) scale(1.02); opacity: 1; } 92%, 100% { transform: translateY(4px) scale(.97); opacity: .88; } }
-  @keyframes staOpBtn { 0%, 8% { fill: #ffc247; r: 2.8px; } 14%, 58% { fill: #fffdf0; r: 3.8px; } 72%, 100% { fill: #ffc247; r: 2.8px; } }
-  @media (prefers-reduced-motion: reduce) {
-   .wedge-lift, .frame-lift, .seat-tilt, .back-tilt, .head-tilt, .arrow-lift, .btn-glow { animation: none !important; }
-  }
- </style>
  <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd67a"/><stop offset=".55" stop-color="#1f9d3f"/><stop offset="1" stop-color="#0d5a26"/></linearGradient>
  <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#48cc68"/><stop offset="1" stop-color="#0e6b2e"/></linearGradient>
  <linearGradient id="a2" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#0e6b2e"/><stop offset="1" stop-color="#48cc68"/></linearGradient>
